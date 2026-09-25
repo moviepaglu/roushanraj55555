@@ -10,113 +10,79 @@
   .container{max-width:1000px;margin:0 auto}
   .header{text-align:center;margin-bottom:18px;padding:20px;background:rgba(30,41,59,.7);border-radius:20px;border:1px solid #334155}
   h1{font-size:26px;background:linear-gradient(135deg,#f59e0b,#ef4444);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .badge{display:inline-block;background:#ef4444;color:#fff;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:700;margin-top:6px;letter-spacing:1px}
+  .badge{display:inline-block;background:#ef4444;color:#fff;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:700;margin-top:6px}
   .sub{color:#94a3b8;font-size:13px;margin-top:6px}
+  .status-bar{margin-top:12px;padding:8px 14px;border-radius:10px;font-size:12px;font-weight:700;display:none}
+  .status-bar.ok{background:rgba(16,185,129,.15);color:#6ee7b7;display:block;border:1px solid rgba(16,185,129,.4)}
+  .status-bar.err{background:rgba(239,68,68,.15);color:#fca5a5;display:block;border:1px solid rgba(239,68,68,.4)}
   .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:16px}
   .stat{background:#0f172a;border:1px solid #334155;border-radius:12px;padding:10px 6px}
   .stat b{display:block;font-size:20px;color:#f59e0b}
   .stat.req-stat b{color:#a78bfa}
   .stat span{font-size:10px;color:#94a3b8;letter-spacing:.5px}
-
-  .tabs{display:flex;gap:8px;margin-bottom:16px;background:#0f172a;padding:6px;border-radius:14px;border:1px solid #334155;position:relative}
-  .tab{flex:1;padding:11px 8px;border:none;background:transparent;color:#94a3b8;font-weight:700;font-size:13px;border-radius:10px;cursor:pointer;transition:.2s;position:relative;display:flex;align-items:center;justify-content:center;gap:6px}
+  .tabs{display:flex;gap:8px;margin-bottom:16px;background:#0f172a;padding:6px;border-radius:14px;border:1px solid #334155}
+  .tab{flex:1;padding:11px 8px;border:none;background:transparent;color:#94a3b8;font-weight:700;font-size:13px;border-radius:10px;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:6px}
   .tab.active{background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff}
   .tab:hover:not(.active){color:#e2e8f0;background:#1e293b}
-
-  .req-badge{
-    background:#ef4444;color:#fff;font-size:10px;padding:2px 7px;
-    border-radius:10px;font-weight:800;min-width:18px;text-align:center;
-    display:none;animation:reqPulse 1.6s ease-in-out infinite;
-  }
+  .req-badge{background:#ef4444;color:#fff;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:800;min-width:18px;text-align:center;display:none}
   .req-badge.show{display:inline-block}
   .tab.active .req-badge{background:#fff;color:#ef4444}
-  @keyframes reqPulse{
-    0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(239,68,68,.6)}
-    50%{transform:scale(1.12);box-shadow:0 0 0 6px rgba(239,68,68,0)}
-  }
-
-  .card{background:rgba(30,41,59,.8);border-radius:20px;padding:22px;margin-bottom:18px;border:1px solid #334155;box-shadow:0 10px 30px rgba(0,0,0,.3)}
-  .card h2{font-size:17px;margin-bottom:16px;color:#f1f5f9;border-left:41px solid #f59e0b;padding-left:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+  .card{background:rgba(30,41,59,.8);border-radius:20px;padding:22px;margin-bottom:18px;border:1px solid #334155}
+  .card h2{font-size:17px;margin-bottom:16px;color:#f1f5f9;border-left:4px solid #f59e0b;padding-left:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
   label{display:block;font-size:13px;color:#cbd5e1;margin-bottom:6px;font-weight:600;margin-top:14px}
-  label:first-of-type{margin-top:0}
   .req{color:#ef4444}
-
-  input[type=text],input[type=number],input[type=url],textarea,select{
-    width:100%;padding:12px 14px;border-radius:12px;border:2px solid #334155;background:#0f172a;color:#fff;
-    font-size:14px;outline:none;transition:.2s;font-family:inherit}
+  input[type=text],input[type=number],input[type=url],textarea,select{width:100%;padding:12px 14px;border-radius:12px;border:2px solid #334155;background:#0f172a;color:#fff;font-size:14px;outline:none;transition:.2s;font-family:inherit}
   textarea{resize:vertical;min-height:80px}
-  select{cursor:pointer}
   input:focus,textarea:focus,select:focus{border-color:#f59e0b;box-shadow:0 0 0 3px rgba(245,158,11,.2)}
   input::placeholder,textarea::placeholder{color:#64748b}
-  .row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   .row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
-
+  .row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   .poster-upload{display:flex;gap:16px;align-items:flex-start;margin-top:6px}
   .poster-preview{width:110px;height:155px;border-radius:12px;background:#0f172a;border:2px dashed #334155;display:flex;align-items:center;justify-content:center;color:#64748b;font-size:11px;text-align:center;flex-shrink:0;overflow:hidden}
   .poster-preview img{width:100%;height:100%;object-fit:cover}
   .poster-controls{flex:1;min-width:0}
-  .file-btn{display:inline-block;padding:10px 18px;background:#334155;color:#f1f5f9;border-radius:10px;cursor:pointer;font-size:13px;font-weight:600;transition:.2s;border:2px solid transparent}
+  .file-btn{display:inline-block;padding:10px 18px;background:#334155;color:#f1f5f9;border-radius:10px;cursor:pointer;font-size:13px;font-weight:600;border:2px solid transparent}
   .file-btn:hover{background:#475569;border-color:#f59e0b}
   #posterInput{display:none}
   .file-hint{font-size:11px;color:#64748b;margin-top:8px}
-
   .seg{display:inline-flex;background:#0f172a;border:1px solid #334155;border-radius:10px;padding:4px;margin-bottom:10px}
-  .seg-btn{border:none;background:transparent;color:#94a3b8;font-size:12px;font-weight:700;padding:7px 14px;border-radius:8px;cursor:pointer;transition:.2s}
+  .seg-btn{border:none;background:transparent;color:#94a3b8;font-size:12px;font-weight:700;padding:7px 14px;border-radius:8px;cursor:pointer}
   .seg-btn.active{background:#334155;color:#f59e0b}
-
   .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
-  .chip{padding:8px 14px;border-radius:20px;background:#0f172a;border:2px solid #334155;cursor:pointer;font-size:12px;font-weight:600;color:#cbd5e1;transition:.2s;user-select:none}
-  .chip:hover{border-color:#475569}
+  .chip{padding:8px 14px;border-radius:20px;background:#0f172a;border:2px solid #334155;cursor:pointer;font-size:12px;font-weight:600;color:#cbd5e1;user-select:none}
   .chip.active{background:linear-gradient(135deg,#f59e0b,#ef4444);border-color:transparent;color:#fff}
-
-  .lang-box{background:#0f172a;border:2px solid #334155;border-radius:12px;padding:12px;max-height:200px;overflow-y:auto;transition:.2s}
-  .lang-box:focus-within{border-color:#f59e0b;box-shadow:0 0 0 3px rgba(245,158,11,.2)}
+  .lang-box{background:#0f172a;border:2px solid #334155;border-radius:12px;padding:12px;max-height:200px;overflow-y:auto}
   .lang-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(135px,1fr));gap:8px}
-  .lang-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;background:#1e293b;border:2px solid transparent;cursor:pointer;font-size:12.5px;font-weight:600;color:#cbd5e1;transition:.15s;user-select:none}
-  .lang-item:hover{background:#334155}
-  .lang-item.active{background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff;border-color:transparent}
+  .lang-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;background:#1e293b;border:2px solid transparent;cursor:pointer;font-size:12.5px;font-weight:600;color:#cbd5e1;user-select:none}
+  .lang-item.active{background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff}
   .lang-item input{display:none}
-  .lang-item .flag{font-size:15px;line-height:1}
   .lang-info{display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:11px;color:#64748b}
   .lang-info b{color:#f59e0b}
   .lang-clear{background:#334155;border:none;color:#fca5a5;padding:5px 12px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer}
-  .lang-clear:hover{background:#ef4444;color:#fff}
-
   .server-row{display:grid;grid-template-columns:130px 110px 1fr 40px;gap:8px;margin-bottom:8px}
   .server-row input{padding:10px 12px;font-size:13px}
-  .icon-btn{background:#334155;border:none;color:#fca5a5;border-radius:10px;cursor:pointer;font-size:15px;font-weight:700;transition:.2s}
-  .icon-btn:hover{background:#ef4444;color:#fff}
-  .add-server{background:#0f172a;border:2px dashed #334155;color:#94a3b8;padding:10px;border-radius:10px;width:100%;cursor:pointer;font-size:12px;font-weight:700;transition:.2s}
-  .add-server:hover{border-color:#f59e0b;color:#f59e0b}
-
+  .icon-btn{background:#334155;border:none;color:#fca5a5;border-radius:10px;cursor:pointer;font-size:15px;font-weight:700}
+  .add-server{background:#0f172a;border:2px dashed #334155;color:#94a3b8;padding:10px;border-radius:10px;width:100%;cursor:pointer;font-size:12px;font-weight:700}
   .switch-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px}
-  .switch{display:flex;align-items:center;gap:8px;background:#0f172a;border:2px solid #334155;border-radius:12px;padding:10px 14px;cursor:pointer;font-size:12px;font-weight:700;color:#cbd5e;transition:.2s;user-select:none}
+  .switch{display:flex;align-items:center;gap:8px;background:#0f172a;border:2px solid #334155;border-radius:12px;padding:10px 14px;cursor:pointer;font-size:12px;font-weight:700;color:#cbd5e1;user-select:none}
   .switch.on{border-color:#f59e0b;color:#f59e0b;background:rgba(245,158,11,.08)}
   .switch input{display:none}
-
-  .btn{width:100%;padding:15px;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;margin-top:20px;transition:.2s;color:#fff;background:linear-gradient(135deg,#f59e0b,#ef4444)}
-  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(245,158,11,.4)}
-  .btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+  .btn{width:100%;padding:15px;border:none;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;margin-top:20px;color:#fff;background:linear-gradient(135deg,#f59e0b,#ef4444)}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
   .btn.ghost{background:#334155}
-  .btn.ghost:hover{box-shadow:none;background:#475569}
   .btn.danger{background:linear-gradient(135deg,#dc2626,#991b1b)}
   .btn-row{display:flex;gap:10px}
-
   .status-msg{margin-top:12px;padding:10px 14px;border-radius:10px;font-size:13px;display:none}
   .status-success{background:#064e3b;color:#6ee7b7;display:block}
   .status-error{background:#7f1d1d;color:#fca5a5;display:block}
-
   .toolbar{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:8px;margin-bottom:14px}
   .toolbar.req-toolbar{grid-template-columns:2fr 1fr 1fr}
   .toolbar input,.toolbar select{padding:10px 12px;font-size:12px}
-
   .bulkbar{display:none;align-items:center;justify-content:space-between;gap:10px;background:#0f172a;border:1px solid #334155;border-radius:12px;padding:10px 14px;margin-bottom:12px;font-size:12px}
   .bulkbar.show{display:flex}
   .bulkbar b{color:#f59e0b}
-
   .movie-list{display:flex;flex-direction:column;gap:12px}
-  .movie-item{background:#0f172a;border:1px solid #334155;border-radius:14px;padding:14px;display:flex;gap:14px;align-items:flex-start;transition:.2s;position:relative}
-  .movie-item:hover{border-color:#f59e0b}
+  .movie-item{background:#0f172a;border:1px solid #334155;border-radius:14px;padding:14px;display:flex;gap:14px;align-items:flex-start;position:relative}
   .movie-item.sel{border-color:#f59e0b;background:rgba(245,158,11,.07)}
   .item-poster{width:65px;height:92px;border-radius:8px;object-fit:cover;background:#1e293b;flex-shrink:0;border:1px solid #334155}
   .item-info{flex:1;min-width:0}
@@ -132,94 +98,58 @@
   .badge-trend{background:#be123c;color:#fff}
   .item-desc{font-size:12px;color:#94a3b8;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .item-actions{display:flex;flex-direction:column;gap:6px;flex-shrink:0}
-  .act{border:none;padding:7px 10px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;transition:.2s;color:#fff;background:#334155;white-space:nowrap}
-  .act:hover{background:#475569}
+  .act{border:none;padding:7px 10px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;color:#fff;background:#334155;white-space:nowrap}
   .act.del{background:#7f1d1d}
-  .act.del:hover{background:#ef4444}
   .act.edit{background:#1e40af}
-  .act.edit:hover{background:#2563eb}
   .act.star{background:#78350f}
-  .act.star:hover{background:#b45309}
   .act.ok{background:#065f46}
-  .act.ok:hover{background:#10b981}
   .act.warn{background:#78350f}
-  .act.warn:hover{background:#b45309}
   .act.purple{background:#5b21b6}
-  .act.purple:hover{background:#7c3aed}
   .chk{position:absolute;top:10px;right:10px;width:18px;height:18px;accent-color:#f59e0b;cursor:pointer}
-
-  /* ================= REQUEST ITEMS ================= */
   .req-list{display:flex;flex-direction:column;gap:12px}
-  .req-item{
-    background:#0f172a;border:1px solid #334155;
-    border-left:4px solid #f59e0b;
-    border-radius:14px;padding:14px;display:flex;gap:14px;align-items:flex-start;
-    transition:.2s;position:relative
-  }
-  .req-item:hover{border-color:#a78bfa;border-left-color:#a78bfa}
+  .req-item{background:#0f172a;border:1px solid #334155;border-left:4px solid #f59e0b;border-radius:14px;padding:14px;display:flex;gap:14px;align-items:flex-start;position:relative}
   .req-item.status-added{border-left-color:#10b981;opacity:.92}
   .req-item.status-rejected{border-left-color:#64748b;opacity:.62}
-
-  .req-item-icon{
-    width:52px;height:52px;border-radius:14px;flex-shrink:0;
-    background:linear-gradient(135deg,#a78bfa,#6366f1);
-    display:flex;align-items:center;justify-content:center;font-size:24px;
-    box-shadow:0 6px 16px rgba(139,92,246,.3)
-  }
-  .req-item.status-added .req-item-icon{background:linear-gradient(135deg,#10b981,#059669);box-shadow:0 6px 16px rgba(16,185,129,.3)}
-  .req-item.status-rejected .req-item-icon{background:linear-gradient(135deg,#475569,#334155);box-shadow:none}
-
+  .req-item-icon{width:52px;height:52px;border-radius:14px;flex-shrink:0;background:linear-gradient(135deg,#a78bfa,#6366f1);display:flex;align-items:center;justify-content:center;font-size:24px}
+  .req-item.status-added .req-item-icon{background:linear-gradient(135deg,#10b981,#059669)}
+  .req-item.status-rejected .req-item-icon{background:linear-gradient(135deg,#475569,#334155)}
   .req-item-info{flex:1;min-width:0;padding-right:80px}
   .req-item-name{font-weight:800;color:#f1f5f9;font-size:15px;margin-bottom:8px;word-break:break-word;line-height:1.3}
   .req-item-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
   .req-item-contact{font-size:11.5px;color:#94a3b8;margin-bottom:6px;word-break:break-word}
   .req-item-contact b{color:#cbd5e1}
   .req-item-time{font-size:11px;color:#64748b;margin-bottom:6px}
-  .req-time-remain{font-size:11.5px;font-weight:700;color:#6ee7b7;display:flex;align-items:center;gap:5px}
+  .req-time-remain{font-size:11.5px;font-weight:700;color:#6ee7b7}
   .req-time-remain.overdue{color:#fca5a5}
   .req-time-remain.pending-soon{color:#fbbf24}
-
-  .req-status-badge{
-    position:absolute;top:14px;right:14px;
-    font-size:10px;font-weight:800;padding:3px 10px;
-    border-radius:20px;letter-spacing:.4px;white-space:nowrap
-  }
+  .req-status-badge{position:absolute;top:14px;right:14px;font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px;white-space:nowrap}
   .req-status-pending{background:rgba(245,158,11,.15);color:#fbbf24;border:1px solid rgba(245,158,11,.4)}
   .req-status-added{background:rgba(16,185,129,.15);color:#6ee7b7;border:1px solid rgba(16,185,129,.4)}
   .req-status-rejected{background:rgba(100,116,139,.2);color:#94a3b8;border:1px solid rgba(100,116,139,.4)}
-
   .req-item-actions{display:flex;flex-direction:column;gap:6px;flex-shrink:0;align-items:stretch}
-
   .empty,.loading{text-align:center;padding:34px 20px;color:#64748b;font-size:14px}
   .count-badge{background:#334155;color:#f1f5f9;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700}
-
   .toast-wrap{position:fixed;top:16px;right:16px;z-index:9999;display:flex;flex-direction:column;gap:10px;max-width:320px}
-  .toast{background:#1e293b;border-left:4px solid #f59e0b;padding:12px 16px;border-radius:10px;color:#e2e8f0;font-size:13px;box-shadow:0 8px 25px rgba(0,0,0,.5);animation:slideIn .25s ease}
+  .toast{background:#1e293b;border-left:4px solid #f59e0b;padding:12px 16px;border-radius:10px;color:#e2e8f0;font-size:13px;box-shadow:0 8px 25px rgba(0,0,0,.5)}
   .toast.success{border-color:#10b981}
   .toast.error{border-color:#ef4444}
   .toast.info{border-color:#a78bfa}
-  @keyframes slideIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
-
-  .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:9998;padding:16px;backdrop-filter:blur(4px)}
+  .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:9998;padding:16px}
   .modal-bg.show{display:flex}
   .modal{background:#1e293b;border:1px solid #334155;border-radius:18px;max-width:520px;width:100%;max-height:88vh;overflow:auto;padding:22px;position:relative}
   .modal-close{position:absolute;top:12px;right:12px;background:#334155;border:none;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:15px}
-  .modal-close:hover{background:#ef4444}
   .pv-poster{width:100%;max-height:280px;object-fit:contain;border-radius:12px;background:#0f172a;margin-bottom:14px}
   .pv-link{display:block;background:#0f172a;border:1px solid #334155;border-radius:10px;padding:10px 12px;margin-bottom:8px;font-size:12px;color:#7dd3fc;word-break:break-all;text-decoration:none}
-  .pv-link:hover{border-color:#f59e0b}
   .hidden{display:none!important}
-
   @media(max-width:700px){
     .row-2,.row-3{grid-template-columns:1fr}
     .toolbar{grid-template-columns:1fr 1fr}
     .toolbar.req-toolbar{grid-template-columns:1fr}
-    .server-row{grid-template-columns:1fr 1fr;gap:6px}
+    .server-row{grid-template-columns:1fr 1fr}
     .server-row input:nth-child(3){grid-column:1/-1}
     .stats{grid-template-columns:1fr 1fr}
     h1{font-size:21px}
     .item-actions{flex-direction:row;flex-wrap:wrap}
-    .lang-grid{grid-template-columns:1fr 1fr}
     .req-item{flex-direction:column;padding-right:14px}
     .req-item-info{padding-right:0}
     .req-status-badge{position:static;align-self:flex-start;margin-bottom:8px}
@@ -236,6 +166,7 @@
     <h1>🎬 Admin Panel Pro</h1>
     <span class="badge">ADMIN ONLY</span>
     <p class="sub">Movie add / edit karo → User ko turant dikh jayegi</p>
+    <div class="status-bar" id="statusBar">⏳ Firebase se connect ho raha hai...</div>
     <div class="stats">
       <div class="stat"><b id="statTotal">0</b><span>TOTAL MOVIES</span></div>
       <div class="stat"><b id="statFeatured">0</b><span>FEATURED</span></div>
@@ -252,13 +183,11 @@
     <button class="tab" data-tab="tools">⚙️ Tools</button>
   </div>
 
-  <!-- ================= ADD / EDIT TAB ================= -->
   <section id="tab-add">
     <div class="card">
       <h2><span id="formTitle">➕ Nai Movie Add Karo</span>
-        <button class="act" id="cancelEditBtn" style="display:none" onclick="cancelEdit()">✖ Cancel Edit</button>
+        <button class="act" id="cancelEditBtn" style="display:none">✖ Cancel Edit</button>
       </h2>
-
       <label>🎥 Movie Ka Naam <span class="req">*</span></label>
       <input type="text" id="movieName" placeholder="Example: Avengers Endgame 2019">
 
@@ -283,40 +212,29 @@
       </div>
 
       <label>🌐 Languages (ek se zyada select kar sakte ho) <span class="req">*</span></label>
-      <div class="lang-box">
-        <div class="lang-grid" id="langGrid"></div>
-      </div>
+      <div class="lang-box"><div class="lang-grid" id="langGrid"></div></div>
       <div class="lang-info">
         <span>Selected: <b id="langCount">0</b> language(s)</span>
-        <button class="lang-clear" type="button" onclick="clearAllLangs()">✖ Clear All</button>
+        <button class="lang-clear" type="button" id="clearLangsBtn">✖ Clear All</button>
       </div>
 
       <label>🔗 Video Links (Multiple Servers) <span class="req">*</span></label>
       <div id="serverList"></div>
-      <button class="add-server" type="button" onclick="addServerRow()">➕ Add Another Server</button>
+      <button class="add-server" type="button" id="addServerBtn">➕ Add Another Server</button>
 
       <label>📝 Description <span class="req">*</span></label>
       <textarea id="movieDesc" placeholder="Movie ki short description likho..."></textarea>
 
       <div class="row-3">
-        <div>
-          <label>📅 Year</label>
-          <input type="number" id="movieYear" placeholder="2024" min="1900" max="2100">
-        </div>
-        <div>
-          <label>⏱️ Duration</label>
-          <input type="text" id="movieDuration" placeholder="2h 15m">
-        </div>
-        <div>
-          <label>⭐ Rating (0-10)</label>
-          <input type="number" id="movieRating" placeholder="7.5" min="0" max="10" step="0.1">
-        </div>
+        <div><label>📅 Year</label><input type="number" id="movieYear" placeholder="2024"></div>
+        <div><label>⏱️ Duration</label><input type="text" id="movieDuration" placeholder="2h 15m"></div>
+        <div><label>⭐ Rating (0-10)</label><input type="number" id="movieRating" placeholder="7.5" step="0.1"></div>
       </div>
 
       <label>📥 Download Link (optional)</label>
       <input type="url" id="movieDownload" placeholder="https://...">
 
-      <label>🎞️ Quality (ek se zyada chun sakte ho)</label>
+      <label>🎞️ Quality</label>
       <div class="chips" id="qualityChips"></div>
 
       <label>🎭 Genres</label>
@@ -333,16 +251,14 @@
         <label class="switch" id="swTrending"><input type="checkbox" id="movieTrending">🔥 Trending</label>
       </div>
 
-      <button class="btn" id="addBtn" onclick="saveMovie()">➕ ADD MOVIE</button>
+      <button class="btn" id="addBtn">➕ ADD MOVIE</button>
       <div id="statusMsg" class="status-msg"></div>
     </div>
   </section>
 
-  <!-- ================= LIST TAB ================= -->
   <section id="tab-list" class="hidden">
     <div class="card">
       <h2>📋 Sabhi Movies <span class="count-badge" id="countBadge">0</span></h2>
-
       <div class="toolbar">
         <input type="text" id="searchBox" placeholder="🔍 Naam / description search...">
         <select id="filterLang"><option value="">🌐 All Lang</option></select>
@@ -356,26 +272,22 @@
           <option value="year">📅 Year New</option>
         </select>
       </div>
-
       <div class="bulkbar" id="bulkBar">
         <span><b id="selCount">0</b> selected</span>
         <div class="btn-row" style="width:auto">
-          <button class="act" onclick="selectAllFiltered()">✅ Select All</button>
-          <button class="act del" onclick="bulkDelete()">🗑️ Delete Selected</button>
+          <button class="act" id="selectAllBtn">✅ Select All</button>
+          <button class="act del" id="bulkDelBtn">🗑️ Delete Selected</button>
         </div>
       </div>
-
       <div class="movie-list" id="movieList"><div class="loading">⏳ Loading...</div></div>
     </div>
   </section>
 
-  <!-- ================= REQUESTS TAB 🎯 ================= -->
   <section id="tab-requests" class="hidden">
     <div class="card">
       <h2>🎯 Movie Requests <span class="count-badge" id="reqCountBadge">0</span></h2>
-
       <div class="toolbar req-toolbar">
-        <input type="text" id="reqSearch" placeholder="🔍 Naam / user / movie search...">
+        <input type="text" id="reqSearch" placeholder="🔍 User / movie search...">
         <select id="reqFilterStatus">
           <option value="">📋 All Status</option>
           <option value="pending">⏳ Pending</option>
@@ -388,1016 +300,869 @@
           <option value="deadline">⏰ Deadline (Urgent)</option>
         </select>
       </div>
-
-      <div class="bulkbar" id="reqBulkBar" style="display:none">
+      <div class="bulkbar" id="reqBulkBar">
         <span>⏳ <b id="reqPendingCount">0</b> pending requests</span>
         <div class="btn-row" style="width:auto">
-          <button class="act ok" onclick="markAllPendingAdded()">✅ Sab Added Mark</button>
-          <button class="act del" onclick="clearRejectedRequests()">🗑️ Clear Rejected</button>
+          <button class="act ok" id="markAllAddedBtn">✅ Sab Added Mark</button>
+          <button class="act del" id="clearRejectedBtn">🗑️ Clear Rejected</button>
         </div>
       </div>
-
       <div class="req-list" id="reqList"><div class="loading">⏳ Loading requests...</div></div>
     </div>
   </section>
 
-  <!-- ================= TOOLS TAB ================= -->
   <section id="tab-tools" class="hidden">
     <div class="card">
       <h2>💾 Backup & Restore</h2>
-      <p style="font-size:13px;color:#94a3b8;line-height:1.6;margin-bottom:6px">
-        Poora database JSON file me export karo, ya pehle se banayi hui backup file import karo.
-      </p>
-      <button class="btn ghost" onclick="exportJSON()">⬇️ Export All Movies (JSON)</button>
+      <button class="btn ghost" id="exportBtn">⬇️ Export All Movies (JSON)</button>
       <label for="importFile" class="file-btn" style="display:block;text-align:center;margin-top:12px">⬆️ Import JSON Backup</label>
       <input type="file" id="importFile" accept=".json" class="hidden">
     </div>
-
     <div class="card">
       <h2>🧹 Cleanup</h2>
-      <p style="font-size:13px;color:#94a3b8;line-height:1.6;margin-bottom:6px">
-        ⚠️ Ye action undo nahi ho sakta. Sirf tab use karo jab pakka ho.
-      </p>
-      <button class="btn danger" onclick="deleteAll()">🗑️ Delete ALL Movies</button>
-      <button class="btn danger" style="margin-top:10px" onclick="deleteAllRequests()">🗑️ Delete ALL Requests</button>
+      <button class="btn danger" id="delAllMoviesBtn">🗑️ Delete ALL Movies</button>
+      <button class="btn danger" style="margin-top:10px" id="delAllReqBtn">🗑️ Delete ALL Requests</button>
     </div>
-
     <div class="card">
       <h2>ℹ️ Info</h2>
       <p style="font-size:13px;color:#94a3b8;line-height:1.8">
         • User app se aayi <b>requests</b> "🎯 Requests" tab me dikhti hain.<br>
         • Har request me <b>👤 user ka naam</b> aur <b>🎬 movie ka naam</b> dikhta hai.<br>
-        • Har request ke saath <b>6 ghante ka countdown</b> chalta hai.<br>
-        • <b>✅ Added</b> button se request complete mark karo.<br>
-        • <b>✏️ Form</b> button se movie form me naam/language/quality auto-fill ho jayega.<br>
-        • <b>📋 Copy</b> button se poori request details clipboard me copy hoti hain.<br>
-        • Poster auto-compress hota hai (~300px width).
+        • 6 ghante ka <b>countdown</b> chalta hai har request par.
       </p>
     </div>
   </section>
 </div>
 
-<!-- PREVIEW MODAL -->
 <div class="modal-bg" id="previewModal">
   <div class="modal">
-    <button class="modal-close" onclick="closePreview()">✕</button>
+    <button class="modal-close" id="closePreviewBtn">✕</button>
     <div id="previewBody"></div>
   </div>
 </div>
 
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getDatabase, ref, push, set, onValue, remove, update }
-    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+  // Global error catcher
+  window.addEventListener('error', (e) => {
+    console.error('❌ Global error:', e.error || e.message);
+  });
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyC6bvaho6e-55XSPeW92e6CMviuj6WCqA8",
-    authDomain: "abod-df454.firebaseapp.com",
-    databaseURL: "https://abod-df454-default-rtdb.firebaseio.com",
-    projectId: "abod-df454",
-    storageBucket: "abod-df454.firebasestorage.app",
-    messagingSenderId: "962090759544",
-    appId: "1:962090759544:web:2a0da10cf441a6f3ff848d",
-    measurementId: "G-RGMRXYXNPM"
-  };
+  let firebaseOK = false;
+  try {
+    const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js");
+    const { getDatabase, ref, push, set, onValue, remove, update }
+      = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js");
 
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
-  const moviesRef = ref(db, 'movies');
-  const requestsRef = ref(db, 'requests');  // 🎯 user-submitted requests
+    const firebaseConfig = {
+      apiKey: "AIzaSyC6bvaho6e-55XSPeW92e6CMviuj6WCqA8",
+      authDomain: "abod-df454.firebaseapp.com",
+      databaseURL: "https://abod-df454-default-rtdb.firebaseio.com",
+      projectId: "abod-df454",
+      storageBucket: "abod-df454.firebasestorage.app",
+      messagingSenderId: "962090759544",
+      appId: "1:962090759544:web:2a0da10cf441a6f3ff848d"
+    };
 
-  const SIX_HOURS_MS = 6 * 60 * 60 * 1000;
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const moviesRef = ref(db, 'movies');
+    const requestsRef = ref(db, 'requests');
+    firebaseOK = true;
 
-  /* ================= STATE ================= */
-  let posterData = null;
-  let posterMode = 'file';
-  let selectedLangs = new Set();
-  let selectedQualities = new Set(['1080p']);
-  let selectedGenres = new Set();
-  let servers = [{ label: 'Server 1', quality: '1080p', url: '' }];
-  let editingId = null;
-  let allMovies = [];
-  let allRequests = [];
-  let selectedIds = new Set();
-  let lastPendingCount = 0;
+    const statusBar = document.getElementById('statusBar');
+    statusBar.textContent = '✅ Firebase connected successfully!';
+    statusBar.className = 'status-bar ok';
+    setTimeout(() => statusBar.style.display = 'none', 3000);
 
-  const LANGUAGES = [
-    { name: 'Hindi', flag: '🇮🇳' }, { name: 'English', flag: '🇬🇧' },
-    { name: 'Tamil', flag: '🇮🇳' }, { name: 'Telugu', flag: '🇮🇳' },
-    { name: 'Punjabi', flag: '🇮🇳' }, { name: 'Bengali', flag: '🇮🇳' },
-    { name: 'Marathi', flag: '🇮🇳' }, { name: 'Malayalam', flag: '🇮🇳' },
-    { name: 'Kannada', flag: '🇮🇳' }, { name: 'Gujarati', flag: '🇮🇳' },
-    { name: 'Urdu', flag: '🇵🇰' }, { name: 'Korean', flag: '🇰🇷' },
-    { name: 'Japanese', flag: '🇯🇵' }, { name: 'Chinese', flag: '🇨🇳' },
-    { name: 'Spanish', flag: '🇪🇸' }, { name: 'French', flag: '🇫🇷' },
-    { name: 'German', flag: '🇩🇪' }, { name: 'Russian', flag: '🇷🇺' },
-    { name: 'Arabic', flag: '🇸🇦' }, { name: 'Turkish', flag: '🇹🇷' },
-    { name: 'Thai', flag: '🇹🇭' }, { name: 'Indonesian', flag: '🇮🇩' },
-    { name: 'Other', flag: '🌍' }
-  ];
+    /* ========== STATE ========== */
+    let posterData = null;
+    let posterMode = 'file';
+    let selectedLangs = new Set();
+    let selectedQualities = new Set(['1080p']);
+    let selectedGenres = new Set();
+    let servers = [{ label: 'Server 1', quality: '1080p', url: '' }];
+    let editingId = null;
+    let allMovies = [];
+    let allRequests = [];
+    let selectedIds = new Set();
+    let lastPendingCount = 0;
+    const SIX_HOURS_MS = 6 * 60 * 60 * 1000;
 
-  const QUALITIES = ['480p','720p','1080p','4K','HD','WEB-DL','BluRay','HDRip'];
-  const GENRES = ['Action','Comedy','Drama','Thriller','Horror','Romance','Sci-Fi','Crime','Adventure','Animation','Fantasy','Mystery','Family','Biography','Documentary'];
+    const LANGUAGES = [
+      { name: 'Hindi', flag: '🇮🇳' }, { name: 'English', flag: '🇬🇧' },
+      { name: 'Tamil', flag: '🇮🇳' }, { name: 'Telugu', flag: '🇮🇳' },
+      { name: 'Punjabi', flag: '🇮🇳' }, { name: 'Bengali', flag: '🇮🇳' },
+      { name: 'Marathi', flag: '🇮🇳' }, { name: 'Malayalam', flag: '🇮🇳' },
+      { name: 'Kannada', flag: '🇮🇳' }, { name: 'Gujarati', flag: '🇮🇳' },
+      { name: 'Urdu', flag: '🇵🇰' }, { name: 'Korean', flag: '🇰🇷' },
+      { name: 'Japanese', flag: '🇯🇵' }, { name: 'Chinese', flag: '🇨🇳' },
+      { name: 'Spanish', flag: '🇪🇸' }, { name: 'French', flag: '🇫🇷' },
+      { name: 'German', flag: '🇩🇪' }, { name: 'Russian', flag: '🇷🇺' },
+      { name: 'Arabic', flag: '🇸🇦' }, { name: 'Turkish', flag: '🇹🇷' },
+      { name: 'Thai', flag: '🇹🇭' }, { name: 'Indonesian', flag: '🇮🇩' },
+      { name: 'Other', flag: '🌍' }
+    ];
+    const QUALITIES = ['480p','720p','1080p','4K','HD','WEB-DL','BluRay','HDRip'];
+    const GENRES = ['Action','Comedy','Drama','Thriller','Horror','Romance','Sci-Fi','Crime','Adventure','Animation','Fantasy','Mystery','Family','Biography','Documentary'];
 
-  /* ================= UTIL ================= */
-  function escapeHtml(t){
-    const d = document.createElement('div');
-    d.textContent = t == null ? '' : String(t);
-    return d.innerHTML;
-  }
-  function toast(msg, type = 'info'){
-    const wrap = document.getElementById('toastWrap');
-    const el = document.createElement('div');
-    el.className = 'toast ' + type;
-    el.textContent = msg;
-    wrap.appendChild(el);
-    setTimeout(() => { el.style.opacity = '0'; el.style.transform='translateX(40px)'; el.style.transition='.3s'; }, 2600);
-    setTimeout(() => el.remove(), 3000);
-  }
-  function showStatus(msg, type){
-    const el = document.getElementById('statusMsg');
-    el.textContent = msg;
-    el.className = 'status-msg status-' + type;
-    setTimeout(() => { el.className = 'status-msg'; }, 3500);
-  }
-  function copyText(t){
-    navigator.clipboard.writeText(t).then(
-      () => toast('📋 Copy ho gaya!', 'success'),
-      () => toast('Copy fail hua', 'error')
-    );
-  }
-  function timeAgo(ts){
-    if (!ts) return 'kabhi nahi';
-    const s = Math.floor((Date.now() - ts) / 1000);
-    if (s < 60) return s + 's pehle';
-    const m = Math.floor(s / 60);
-    if (m < 60) return m + 'm pehle';
-    const h = Math.floor(m / 60);
-    if (h < 24) return h + 'h ' + (m % 60) + 'm pehle';
-    const d = Math.floor(h / 24);
-    return d + 'd pehle';
-  }
-  function formatDate(ts){
-    if (!ts) return '—';
-    const d = new Date(ts);
-    return d.toLocaleString('en-IN', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
-  }
-  function formatRemaining(remainingMs){
-    if (remainingMs <= 0){
-      const over = Math.abs(remainingMs);
-      const h = Math.floor(over / 3600000);
-      const m = Math.floor((over % 3600000) / 60000);
-      return { text: `⚠️ ${h}h ${m}m overdue`, cls: 'overdue' };
+    /* ========== UTIL ========== */
+    function escapeHtml(t){
+      const d = document.createElement('div');
+      d.textContent = t == null ? '' : String(t);
+      return d.innerHTML;
     }
-    const h = Math.floor(remainingMs / 3600000);
-    const m = Math.floor((remainingMs % 3600000) / 60000);
-    if (h < 1) return { text: `⏳ ${m}m remaining (urgent!)`, cls: 'pending-soon' };
-    if (h < 2) return { text: `⏳ ${h}h ${m}m remaining`, cls: 'pending-soon' };
-    return { text: `⏳ ${h}h ${m}m remaining`, cls: '' };
-  }
+    function toast(msg, type = 'info'){
+      const wrap = document.getElementById('toastWrap');
+      const el = document.createElement('div');
+      el.className = 'toast ' + type;
+      el.textContent = msg;
+      wrap.appendChild(el);
+      setTimeout(() => { el.style.opacity = '0'; el.style.transition='.3s'; }, 2600);
+      setTimeout(() => el.remove(), 3000);
+    }
+    function showStatus(msg, type){
+      const el = document.getElementById('statusMsg');
+      el.textContent = msg;
+      el.className = 'status-msg status-' + type;
+      setTimeout(() => { el.className = 'status-msg'; }, 3500);
+    }
+    function copyText(t){
+      navigator.clipboard.writeText(t).then(
+        () => toast('📋 Copy ho gaya!', 'success'),
+        () => toast('Copy fail', 'error')
+      );
+    }
+    function timeAgo(ts){
+      if (!ts) return 'kabhi nahi';
+      const s = Math.floor((Date.now() - ts) / 1000);
+      if (s < 60) return s + 's pehle';
+      const m = Math.floor(s / 60);
+      if (m < 60) return m + 'm pehle';
+      const h = Math.floor(m / 60);
+      if (h < 24) return h + 'h ' + (m % 60) + 'm pehle';
+      return Math.floor(h / 24) + 'd pehle';
+    }
+    function formatDate(ts){
+      if (!ts) return '—';
+      return new Date(ts).toLocaleString('en-IN', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+    }
+    function formatRemaining(ms){
+      if (ms <= 0){
+        const o = Math.abs(ms);
+        const h = Math.floor(o / 3600000), m = Math.floor((o % 3600000) / 60000);
+        return { text: `⚠️ ${h}h ${m}m overdue`, cls: 'overdue' };
+      }
+      const h = Math.floor(ms / 3600000), m = Math.floor((ms % 3600000) / 60000);
+      if (h < 1) return { text: `⏳ ${m}m remaining (urgent!)`, cls: 'pending-soon' };
+      if (h < 2) return { text: `⏳ ${h}h ${m}m remaining`, cls: 'pending-soon' };
+      return { text: `⏳ ${h}h ${m}m remaining`, cls: '' };
+    }
 
-  /* ================= TABS ================= */
-  document.querySelectorAll('.tab').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      ['add','list','requests','tools'].forEach(t => {
-        document.getElementById('tab-' + t).classList.toggle('hidden', t !== btn.dataset.tab);
+    /* ========== TABS ========== */
+    document.querySelectorAll('.tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        ['add','list','requests','tools'].forEach(t => {
+          document.getElementById('tab-' + t).classList.toggle('hidden', t !== btn.dataset.tab);
+        });
       });
     });
-  });
-  function goTab(name){
-    document.querySelector(`.tab[data-tab="${name}"]`).click();
-  }
+    function goTab(name){ document.querySelector(`.tab[data-tab="${name}"]`).click(); }
 
-  /* ================= POSTER ================= */
-  document.querySelectorAll('.seg-btn').forEach(b => {
-    b.addEventListener('click', () => {
-      document.querySelectorAll('.seg-btn').forEach(x => x.classList.remove('active'));
-      b.classList.add('active');
-      posterMode = b.dataset.pmode;
-      document.getElementById('posterFileBox').classList.toggle('hidden', posterMode !== 'file');
-      document.getElementById('posterUrlBox').classList.toggle('hidden', posterMode !== 'url');
-      if (posterMode === 'file') {
-        posterData = null;
-        document.getElementById('posterPreview').innerHTML = '<span>No Image</span>';
-      } else {
-        const u = document.getElementById('posterUrl').value.trim();
-        posterData = u || null;
-        document.getElementById('posterPreview').innerHTML = u ? `<img src="${escapeHtml(u)}" alt="">` : '<span>No Image</span>';
-      }
-    });
-  });
-
-  document.getElementById('posterUrl').addEventListener('input', (e) => {
-    const u = e.target.value.trim();
-    posterData = u || null;
-    document.getElementById('posterPreview').innerHTML = u
-      ? `<img src="${escapeHtml(u)}" alt="" onerror="this.parentNode.innerHTML='<span>Bad URL</span>'">`
-      : '<span>No Image</span>';
-  });
-
-  function compressImage(file, maxW = 300, quality = 0.75){
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const img = new Image();
-        img.onload = () => {
-          const canvas = document.createElement('canvas');
-          let w = img.width, h = img.height;
-          if (w > maxW) { h = Math.round(h * maxW / w); w = maxW; }
-          canvas.width = w; canvas.height = h;
-          canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-          resolve(canvas.toDataURL('image/jpeg', quality));
-        };
-        img.onerror = reject;
-        img.src = e.target.result;
-      };
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
-  }
-
-  document.getElementById('posterInput').addEventListener('change', async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    try {
-      posterData = await compressImage(file);
-      document.getElementById('posterPreview').innerHTML = `<img src="${posterData}" alt="preview">`;
-      document.getElementById('posterFileName').textContent = file.name + ' ✅ ready';
-    } catch (err) {
-      toast('Image load fail: ' + err.message, 'error');
-    }
-  });
-
-  /* ================= LANGUAGE MULTI-SELECT ================= */
-  function buildLangGrid(){
-    const grid = document.getElementById('langGrid');
-    grid.innerHTML = LANGUAGES.map(l => `
-      <label class="lang-item${selectedLangs.has(l.name)?' active':''}" data-lang="${l.name}">
-        <input type="checkbox" ${selectedLangs.has(l.name)?'checked':''}>
-        <span class="flag">${l.flag}</span>
-        <span>${l.name}</span>
-      </label>
-    `).join('');
-
-    grid.querySelectorAll('.lang-item').forEach(el => {
-      el.addEventListener('click', (e) => {
-        e.preventDefault();
-        const lang = el.dataset.lang;
-        if (selectedLangs.has(lang)) {
-          selectedLangs.delete(lang);
-          el.classList.remove('active');
-          el.querySelector('input').checked = false;
+    /* ========== POSTER ========== */
+    document.querySelectorAll('.seg-btn').forEach(b => {
+      b.addEventListener('click', () => {
+        document.querySelectorAll('.seg-btn').forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        posterMode = b.dataset.pmode;
+        document.getElementById('posterFileBox').classList.toggle('hidden', posterMode !== 'file');
+        document.getElementById('posterUrlBox').classList.toggle('hidden', posterMode !== 'url');
+        if (posterMode === 'file') {
+          posterData = null;
+          document.getElementById('posterPreview').innerHTML = '<span>No Image</span>';
         } else {
-          selectedLangs.add(lang);
-          el.classList.add('active');
-          el.querySelector('input').checked = true;
+          const u = document.getElementById('posterUrl').value.trim();
+          posterData = u || null;
+          document.getElementById('posterPreview').innerHTML = u ? `<img src="${escapeHtml(u)}">` : '<span>No Image</span>';
         }
-        updateLangCount();
       });
     });
-    updateLangCount();
-  }
-
-  function updateLangCount(){
-    document.getElementById('langCount').textContent = selectedLangs.size;
-  }
-
-  window.clearAllLangs = function(){
-    selectedLangs.clear();
-    document.querySelectorAll('.lang-item').forEach(el => {
-      el.classList.remove('active');
-      el.querySelector('input').checked = false;
+    document.getElementById('posterUrl').addEventListener('input', (e) => {
+      const u = e.target.value.trim();
+      posterData = u || null;
+      document.getElementById('posterPreview').innerHTML = u
+        ? `<img src="${escapeHtml(u)}" onerror="this.parentNode.innerHTML='<span>Bad URL</span>'">`
+        : '<span>No Image</span>';
     });
-    updateLangCount();
-    toast('Languages clear ho gayi', 'info');
-  };
-
-  /* ================= CHIPS ================= */
-  function buildChips(){
-    const qc = document.getElementById('qualityChips');
-    qc.innerHTML = QUALITIES.map(q =>
-      `<div class="chip${selectedQualities.has(q)?' active':''}" data-q="${q}">${q}</div>`).join('');
-    qc.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
-      const q = c.dataset.q;
-      selectedQualities.has(q) ? selectedQualities.delete(q) : selectedQualities.add(q);
-      c.classList.toggle('active');
-    }));
-
-    const gc = document.getElementById('genreChips');
-    gc.innerHTML = GENRES.map(g =>
-      `<div class="chip${selectedGenres {
-.has(g)?' active':''}" data-g="${g}">${g}</div>`).        servers[+join('');
-    gc.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
-      const g = c.dataset.g;
-      selectedGenres.has(g) ? selectedGenres.delete(g) : selectedGenres.add(g);
-      c.classList.toggle('active');
-    }));
-  }
-
-  /* ================= SERVERS ================= */
-  function renderServers(){
-    const box = document.getElementById('serverList');
-    box.innerHTML = servers.map((s, i) => `
-      <div class="server-row">
-        <input type="text" placeholder="Label" value="${escapeHtml(s.label)}" data-si="${i}" data-sk="label">
-        <input type="text" placeholder="Quality" value="${escapeHtml(s.quality)}" data-si="${i}" data-sk="quality">
-        <input type="url" placeholder="https://...video.mp4" value="${escapeHtml(s.url)}" data-si="${i}" data-sk="url">
-        <button class="icon-btn" type="button" onclick="removeServerRow(${i})">✕</button>
-      </div>`).join('');
-    box.querySelectorAll('input').forEach(inp => {
-      inp.addEventListener('input', e =>e.target.dataset.si][e.target.dataset.sk] = e.target.value;
-      });
-    });
-  }
-  window.addServerRow = function(){
-    servers.push({ label: 'Server ' + (servers.length + 1), quality: '', url: '' });
-    renderServers();
-  };
-  window.removeServerRow = function(i){
-    if (servers.length === 1) { servers[0] = { label:'Server 1', quality:'', url:'' }; renderServers(); return; }
-    servers.splice(i, 1);
-    renderServers();
-  };
-
-  /* ================= SWITCHES ================= */
-  ['swFeatured','swTrending'].forEach(id => {
-    const sw = document.getElementById(id);
-    sw.addEventListener('click', (e) => {
-      if (e.target.tagName !== 'INPUT') {
-        const cb = sw.querySelector('input');
-        cb.checked = !cb.checked;
-      }
-      setTimeout(() => sw.classList.toggle('on', sw.querySelector('input').checked), 0);
-    });
-  });
-
-  /* ================= VALIDATE + SAVE ================= */
-  window.saveMovie = async function(){
-    const name = document.getElementById('movieName').value.trim();
-    const desc = document.getElementById('movieDesc').value.trim();
-    const year = document.getElementById('movieYear').value.trim();
-    const duration = document.getElementById('movieDuration').value.trim();
-    const rating = document.getElementById('movieRating').value.trim();
-    const download = document.getElementById('movieDownload').value.trim();
-    const trailer = document.getElementById('movieTrailer').value.trim();
-    const subtitle = document.getElementById('movieSubtitle').value.trim();
-    const featured = document.getElementById('movieFeatured').checked;
-    const trending = document.getElementById('movieTrending').checked;
-
-    const cleanServers = servers
-      .map(s => ({ label: (s.label||'').trim() || 'Server', quality: (s.quality||'').trim(), url: (s.url||'').trim() }))
-      .filter(s => s.url);
-
-    if (!name) return showStatus('❌ Movie ka naam likho!', 'error');
-    if (!posterData) return showStatus('❌ Poster select / URL daalo!', 'error');
-    if (selectedLangs.size === 0) return showStatus('❌ Kam se kam ek Language select karo!', 'error');
-    if (!desc) return showStatus('❌ Description likho!', 'error');
-    if (!cleanServers.length) return showStatus('❌ Kam se kam ek video link daalo!', 'error');
-    const bad = cleanServers.find(s => !/^https?:\/\//i.test(s.url));
-    if (bad) return showStatus('❌ Video link http/https se start hona chahiye!', 'error');
-    if (selectedQualities.size === 0) return showStatus('❌ Kam se kam ek Quality chuno!', 'error');
-
-    const btn = document.getElementById('addBtn');
-    btn.disabled = true;
-    btn.textContent = editingId ? '⏳ Updating...' : '⏳ Adding...';
-
-    const qualitiesArr = [...selectedQualities];
-    const langsArr = [...selectedLangs];
-
-    const payload = {
-      name, desc,
-      langs: langsArr,
-      lang: langsArr[0],
-      year: year || '',
-      duration: duration || '',
-      rating: rating || '',
-      poster: posterData,
-      qualities: qualitiesArr,
-      genres: [...selectedGenres],
-      servers: cleanServers,
-      download: download || '',
-      trailer: trailer || '',
-      subtitle: subtitle || '',
-      featured, trending,
-      updatedAt: Date.now(),
-      link: cleanServers[0].url,
-      quality: qualitiesArr[0] || 'HD'
-    };
-
-    try {
-      if (editingId) {
-        await update(ref(db, 'movies/' + editingId), payload);
-        toast('✅ Movie update ho gayi!', 'success');
-      } else {
-        payload.time = Date.now();
-        const newRef = push(moviesRef);
-        await set(newRef, payload);
-        toast('✅ Movie add ho gayi!', 'success');
-      }
-      cancelEdit(true);
-      goTab('list');
-    } catch (err) {
-      console.error(err);
-      showStatus('❌ Error: ' + err.message, 'error');
-    } finally {
-      btn.disabled = false;
-      btn.textContent = editingId ? '💾 UPDATE MOVIE' : '➕ ADD MOVIE';
-    }
-  };
-
-  function resetForm(){
-    document.getElementById('movieName').value = '';
-    document.getElementById('movieDesc').value = '';
-    document.getElementById('movieYear').value = '';
-    document.getElementById('movieDuration').value = '';
-    document.getElementById('movieRating').value = '';
-    document.getElementById('movieDownload').value = '';
-    document.getElementById('movieTrailer').value = '';
-    document.getElementById('movieSubtitle').value = '';
-    document.getElementById('movieFeatured').checked = false;
-    document.getElementById('movieTrending').checked = false;
-    document.getElementById('swFeatured').classList.remove('on');
-    document.getElementById('swTrending').classList.remove('on');
-    document.getElementById('posterInput').value = '';
-    document.getElementById('posterFileName').textContent = 'JPG, PNG — auto compress hoga';
-    document.getElementById('posterUrl').value = '';
-    document.getElementById('posterPreview').innerHTML = '<span>No Image</span>';
-    posterData = null;
-    selectedLangs = new Set();
-    selectedQualities = new Set(['1080p']);
-    selectedGenres = new Set();
-    servers = [{ label: 'Server 1', quality: '1080p', url: '' }];
-    buildLangGrid();
-    buildChips();
-    renderServers();
-  }
-
-  window.cancelEdit = function(silent){
-    editingId = null;
-    resetForm();
-    document.getElementById('formTitle').textContent = '➕ Nai Movie Add Karo';
-    document.getElementById('addBtn').textContent = '➕ ADD MOVIE';
-    document.getElementById('cancelEditBtn').style.display = 'none';
-    if (!silent) toast('Edit cancel', 'info');
-  };
-
-  function loadForEdit(id){
-    const m = allMovies.find(x => x.id === id);
-    if (!m) return;
-    editingId = id;
-    goTab('add');
-
-    document.getElementById('movieName').value = m.name || '';
-    document.getElementById('movieDesc').value = m.desc || '';
-    document.getElementById('movieYear').value = m.year || '';
-    document.getElementById('movieDuration').value = m.duration || '';
-    document.getElementById('movieRating').value = m.rating || '';
-    document.getElementById('movieDownload').value = m.download || '';
-    document.getElementById('movieTrailer').value = m.trailer || '';
-    document.getElementById('movieSubtitle').value = m.subtitle || '';
-
-    document.getElementById('movieFeatured').checked = !!m.featured;
-    document.getElementById('movieTrending').checked = !!m.trending;
-    document.getElementById('swFeatured').classList.toggle('on', !!m.featured);
-    document.getElementById('swTrending').classList.toggle('on', !!m.trending);
-
-    posterData = m.poster || null;
-    document.getElementById('posterPreview').innerHTML = m.poster
-      ? `<img src="${escapeHtml(m.poster)}" alt="">` : '<span>No Image</span>';
-    document.getElementById('posterUrl').value = (m.poster && m.poster.startsWith('http')) ? m.poster : '';
-
-    const langsToLoad = Array.isArray(m.langs) && m.langs.length ? m.langs : (m.lang ? [m.lang] : []);
-    selectedLangs = new Set(langsToLoad);
-    buildLangGrid();
-
-    selectedQualities = new Set(m.qualities || (m.quality ? [m.quality] : ['1080p']));
-    selectedGenres = new Set(m.genres || []);
-    buildChips();
-
-    servers = (m.servers && m.servers.length)
-      ? m.servers.map(s => ({ label: s.label || '', quality: s.quality || '', url: s.url || '' }))
-      : [{ label: 'Server 1', quality: m.quality || '', url: m.link || '' }];
-    renderServers();
-
-    document.getElementById('formTitle').textContent = '✏️ Movie Edit Karo';
-    document.getElementById('addBtn').textContent = '💾 UPDATE MOVIE';
-    document.getElementById('cancelEditBtn').style.display = 'inline-block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    toast('✏️ Edit mode on', 'info');
-  }
-
-  /* ================= DELETE ================= */
-  window.deleteMovie = async function(id){
-    const m = allMovies.find(x => x.id === id);
-    if (!confirm(`"${m ? m.name : 'Ye movie'}" delete karni hai?`)) return;
-    try {
-      await remove(ref(db, 'movies/' + id));
-      selectedIds.delete(id);
-      toast('🗑️ Delete ho gayi', 'success');
-    } catch (err) { toast('Delete fail: ' + err.message, 'error'); }
-  };
-
-  window.toggleFeatured = async function(id){
-    const m = allMovies.find(x => x.id === id);
-    if (!m) return;
-    try {
-      await update(ref(db, 'movies/' + id), { featured: !m.featured });
-      toast(!m.featured ? '⭐ Featured on' : '☆ Featured off', 'success');
-    } catch (e) { toast('Fail: ' + e.message, 'error'); }
-  };
-
-  window.bulkDelete = async function(){
-    if (selectedIds.size === 0) return toast('Pehle movies select karo', 'error');
-    if (!confirm(`${selectedIds.size} movies delete karni hain?`)) return;
-    try {
-      await Promise.all([...selectedIds].map(id => remove(ref(db, 'movies/' + id))));
-      toast(`🗑️ ${selectedIds.size} movies delete ho gayi`, 'success');
-      selectedIds.clear();
-    } catch (e) { toast('Fail: ' + e.message, 'error'); }
-  };
-
-  window.selectAllFiltered = function(){
-    const list = getFiltered();
-    const allSel = list.every(m => selectedIds.has(m.id));
-    list.forEach(m => allSel ? selectedIds.delete(m.id) : selectedIds.add(m.id));
-    renderList();
-  };
-
-  window.deleteAll = async function(){
-    if (!allMovies.length) return toast('Koi movie hi nahi hai', 'error');
-    if (!confirm('⚠️ SAARI movies delete ho jayengi! Pakka?')) return;
-    if (!confirm('🚨 Ye undo NAHI ho sakta. Confirm karo?')) return;
-    try {
-      await remove(moviesRef);
-      toast('🧹 Sab delete ho gaya', 'success');
-    } catch (e) { toast('Fail: ' + e.message, 'error'); }
-  };
-
-  window.deleteAllRequests = async function(){
-    if (!allRequests.length) return toast('Koi request hi nahi hai', 'error');
-    if (!confirm('⚠️ SAARI requests delete ho jayengi! Pakka?')) return;
-    try {
-      await remove(requestsRef);
-      toast('🧹 Saari requests delete ho gayi', 'success');
-    } catch (e) { toast('Fail: ' + e.message, 'error'); }
-  };
-
-  /* ================= PREVIEW ================= */
-  window.openPreview = function(id){
-    const m = allMovies.find(x => x.id === id);
-    if (!m) return;
-    const qs = (m.qualities || (m.quality ? [m.quality] : []));
-    const langs = Array.isArray(m.langs) && m.langs.length ? m.langs : (m.lang ? [m.lang] : []);
-    const srv = (m.servers && m.servers.length) ? m.servers : (m.link ? [{label:'Server 1', quality:m.quality||'', url:m.link}] : []);
-    document.getElementById('previewBody').innerHTML = `
-      ${m.poster ? `<img class="pv-poster" src="${escapeHtml(m.poster)}" alt="">` : ''}
-      <h2 style="font-size:19px;color:#f1f5f9;margin-bottom:10px">🎬 ${escapeHtml(m.name)}</h2>
-      <div class="item-badges" style="margin-bottom:12px">
-        ${langs.map(l=>`<span class="mini-badge badge-lang">🌐 ${escapeHtml(l)}</span>`).join('')}
-        ${qs.map(q=>`<span class="mini-badge badge-quality">🎞️ ${escapeHtml(q)}</span>`).join('')}
-        ${m.year?`<span class="mini-badge badge-year">📅 ${escapeHtml(m.year)}</span>`:''}
-        ${m.rating?`<span class="mini-badge badge-rate">⭐ ${escapeHtml(m.rating)}</span>`:''}
-        ${(m.genres||[]).map(g=>`<span class="mini-badge badge-genre">${escapeHtml(g)}</span>`).join('')}
-        ${m.featured?'<span class="mini-badge badge-feat">⭐ FEATURED</span>':''}
-        ${m.trending?'<span class="mini-badge badge-trend">🔥 TRENDING</span>':''}
-      </div>
-      <p style="font-size:13px;color:#94a3b8;line-height:1.6;margin-bottom:14px">${escapeHtml(m.desc||'')}</p>
-      ${m.duration?`<p style="font-size:12px;color:#94a3b8;margin-bottom:12px">⏱️ ${escapeHtml(m.duration)}</p>`:''}
-      <div style="font-size:12px;color:#cbd5e1;font-weight:700;margin-bottom:8px">🔗 VIDEO LINKS</div>
-      ${srv.map(s=>`<a class="pv-link" href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${escapeHtml(s.label)} ${s.quality?'• '+escapeHtml(s.quality):''}<br>${escapeHtml(s.url)}</a>`).join('') || '<p style="color:#64748b;font-size:12px">Koi link nahi</p>'}
-      ${m.download?`<div style="font-size:12px;color:#cbd5e1;font-weight:700;margin:12px 0 8px">📥 DOWNLOAD</div><a class="pv-link" href="${escapeHtml(m.download)}" target="_blank" rel="noopener">${escapeHtml(m.download)}</a>`:''}
-      ${m.trailer?`<div style="font-size:12px;color:#cbd5e1;font-weight:700;margin:12px 0 8px">🎬 TRAILER</div><a class="pv-link" href="${escapeHtml(m.trailer)}" target="_blank" rel="noopener">${escapeHtml(m.trailer)}</a>`:''}
-      ${m.subtitle?`<div style="font-size:12px;color:#cbd5e1;font-weight:700;margin:12px 0 8px">💬 SUBTITLE</div><a class="pv-link" href="${escapeHtml(m.subtitle)}" target="_blank" rel="noopener">${escapeHtml(m.subtitle)}</a>`:''}
-    `;
-    document.getElementById('previewModal').classList.add('show');
-  };
-  window.closePreview = function(){
-    document.getElementById('previewModal').classList.remove('show');
-  };
-  document.getElementById('previewModal').addEventListener('click', e => {
-    if (e.target.id === 'previewModal') closePreview();
-  });
-
-  /* ================= FILTER / SORT (MOVIES) ================= */
-  function getFiltered(){
-    const q = document.getElementById('searchBox').value.trim().toLowerCase();
-    const fl = document.getElementById('filterLang').value;
-    const fq = document.getElementById('filterQuality').value;
-    const fg = document.getElementById('filterGenre').value;
-    const sort = document.getElementById('sortBy').value;
-
-    let list = allMovies.filter(m => {
-      const qualities = m.qualities || (m.quality ? [m.quality] : []);
-      const langs = Array.isArray(m.langs) && m.langs.length ? m.langs : (m.lang ? [m.lang] : []);
-      if (q && !((m.name||'').toLowerCase().includes(q) || (m.desc||'').toLowerCase().includes(q))) return false;
-      if (fl && !langs.includes(fl)) return false;
-      if (fq && !qualities.includes(fq)) return false;
-      if (fg && !(m.genres||[]).includes(fg)) return false;
-      return true;
-    });
-
-    if (sort === 'newest') list.sort((a,b) => (b.time||0) - (a.time||0));
-    else if (sort === 'oldest') list.sort((a,b) => (a.time||0) - (b.time||0));
-    else if (sort === 'name') list.sort((a,b) => (a.name||'').localeCompare(b.name||''));
-    else if (sort === 'rating') list.sort((a,b) => (parseFloat(b.rating)||0) - (parseFloat(a.rating)||0));
-    else if (sort === 'year') list.sort((a,b) => (parseInt(b.year)||0) - (parseInt(a.year)||0));
-
-    return list;
-  }
-
-  ['searchBox','filterLang','filterQuality','filterGenre','sortBy'].forEach(id => {
-    document.getElementById(id).addEventListener('input', renderList);
-    document.getElementById(id).addEventListener('change', renderList);
-  });
-
-  function fillFilterOptions(){
-    const langs = [...new Set(allMovies.flatMap(m => {
-      return Array.isArray(m.langs) && m.langs.length ? m.langs : (m.lang ? [m.lang] : []);
-    }))].sort();
-    const quals = [...new Set(allMovies.flatMap(m => m.qualities || (m.quality ? [m.quality] : [])))].sort();
-    const gens  = [...new Set(allMovies.flatMap(m => m.genres || []))].sort();
-
-    const setOpts = (id, arr, ph) => {
-      const sel = document.getElementById(id);
-      const cur = sel.value;
-      sel.innerHTML = `<option value="">${ph}</option>` + arr.map(v => `<option>${escapeHtml(v)}</option>`).join('');
-      if (arr.includes(cur)) sel.value = cur;
-    };
-    setOpts('filterLang', langs, '🌐 All Lang');
-    setOpts('filterQuality', quals, '🎞️ All Quality');
-    setOpts('filterGenre', gens, '🎭 All Genre');
-  }
-
-  /* ================= LIST RENDER ================= */
-  function renderList(){
-    const listDiv = document.getElementById('movieList');
-    const list = getFiltered();
-    document.getElementById('countBadge').textContent = allMovies.length;
-
-    if (!list.length){
-      listDiv.innerHTML = allMovies.length
-        ? '<div class="empty">🔍 Koi movie filter se match nahi hui</div>'
-        : '<div class="empty">🎞️ Abhi koi movie nahi hai. Add tab me jao!</div>';
-      updateBulkBar();
-      return;
-    }
-
-    listDiv.innerHTML = list.map(m => {
-      const qualities = m.qualities || (m.quality ? [m.quality] : []);
-      const langs = Array.isArray(m.langs) && m.langs.length ? m.langs : (m.lang ? [m.lang] : []);
-      const srvCount = (m.servers && m.servers.length) ? m.servers.length : (m.link ? 1 : 0);
-      const posterImg = m.poster
-        ? `<img class="item-poster" src="${escapeHtml(m.poster)}" alt="">`
-        : `<div class="item-poster" style="display:flex;align-items:center;justify-content:center;color:#64748b;font-size:20px">🎬</div>`;
-
-      return `
-      <div class="movie-item ${selectedIds.has(m.id)?'sel':''}" data-id="${m.id}">
-        <input type="checkbox" class="chk" data-chk="${m.id}" ${selectedIds.has(m.id)?'checked':''}>
-        ${posterImg}
-        <div class="item-info">
-          <div class="item-name">🎬 ${escapeHtml(m.name)}</div>
-          <div class="item-badges">
-            ${langs.slice(0,3).map(l=>`<span class="mini-badge badge-lang">🌐 ${escapeHtml(l)}</span>`).join('')}
-            ${langs.length>3?`<span class="mini-badge badge-lang">+${langs.length-3}</span>`:''}
-            ${qualities.slice(0,2).map(q=>`<span class="mini-badge badge-quality">🎞️ ${escapeHtml(q)}</span>`).join('')}
-            ${m.year?`<span class="mini-badge badge-year">📅 ${escapeHtml(m.year)}</span>`:''}
-            ${m.rating?`<span class="mini-badge badge-rate">⭐ ${escapeHtml(m.rating)}</span>`:''}
-            ${(m.genres||[]).slice(0,2).map(g=>`<span class="mini-badge badge-genre">${escapeHtml(g)}</span>`).join('')}
-            ${m.featured?'<span class="mini-badge badge-feat">⭐ FEATURED</span>':''}
-            ${m.trending?'<span class="mini-badge badge-trend">🔥 TRENDING</span>':''}
-          </div>
-          <div class="item-desc">${escapeHtml(m.desc||'No description')}</div>
-          <div style="font-size:11px;color:#64748b;margin-top:6px">🔗 ${srvCount} server${srvCount>1?'s':''}${m.duration?' • ⏱️ '+escapeHtml(m.duration):''}</div>
-        </div>
-        <div class="item-actions">
-          <button class="act edit" data-action="edit" data-id="${m.id}">✏️ Edit</button>
-          <button class="act" data-action="preview" data-id="${m.id}">👁️ View</button>
-          <button class="act" data-action="copy" data-id="${m.id}">📋 Link</button>
-          <button class="act star" data-action="star" data-id="${m.id}">${m.featured?'☆ Unfeat':'⭐ Feat'}</button>
-          <button class="act del" data-action="del" data-id="${m.id}">🗑️ Del</button>
-        </div>
-      </div>`;
-    }).join('');
-
-    updateBulkBar();
-  }
-
-  function updateBulkBar(){
-    const bar = document.getElementById('bulkBar');
-    document.getElementById('selCount').textContent = selectedIds.size;
-    bar.classList.toggle('show', selectedIds.size > 0);
-  }
-
-  document.getElementById('movieList').addEventListener('click', (e) => {
-    const btn = e.target.closest('[data-action]');
-    if (btn){
-      const id = btn.dataset.id;
-      const act = btn.dataset.action;
-      if (act === 'edit') loadForEdit(id);
-      else if (act === 'del') deleteMovie(id);
-      else if (act === 'preview') openPreview(id);
-      else if (act === 'star') toggleFeatured(id);
-      else if (act === 'copy'){
-        const m = allMovies.find(x => x.id === id);
-        const url = (m.servers && m.servers[0] && m.servers[0].url) || m.link || '';
-        copyText(url);
-      }
-      return;
-    }
-    const chk = e.target.closest('[data-chk]');
-    if (chk){
-      const id = chk.dataset.chk;
-      chk.checked ? selectedIds.add(id) : selectedIds.delete(id);
-      chk.closest('.movie-item').classList.toggle('sel', chk.checked);
-      updateBulkBar();
-    }
-  });
-
-  /* ============================================================
-     🎯 REQUESTS — FILTER, RENDER & ACTIONS
-     ============================================================ */
-  function getFilteredRequests(){
-    const q = document.getElementById('reqSearch').value.trim().toLowerCase();
-    const fs = document.getElementById('reqFilterStatus').value;
-    const sort = document.getElementById('reqSortBy').value;
-
-    let list = allRequests.filter(r => {
-      if (q){
-        // ✅ search me requesterName bhi include kiya
-        const hay = ((r.requesterName||'') + ' ' + (r.name||'') + ' ' + (r.lang||'') + ' ' + (r.quality||'')).toLowerCase();
-        if (!hay.includes(q)) return false;
-      }
-      if (fs && (r.status || 'pending') !== fs) return false;
-      return true;
-    });
-
-    if (sort === 'newest') list.sort((a,b) => (b.time||0) - (a.time||0));
-    else if (sort === 'oldest') list.sort((a,b) => (a.time||0) - (b.time||0));
-    else if (sort === 'deadline'){
-      list.sort((a,b) => {
-        const aStatus = a.status || 'pending';
-        const bStatus = b.status || 'pending';
-        if (aStatus === 'pending' && bStatus !== 'pending') return -1;
-        if (aStatus !== 'pending' && bStatus === 'pending') return 1;
-        const aDead = (a.time||0) + SIX_HOURS_MS;
-        const bDead = (b.time||0) + SIX_HOURS_MS;
-        return aDead - bDead;
+    function compressImage(file, maxW = 300, quality = 0.75){
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            let w = img.width, h = img.height;
+            if (w > maxW) { h = Math.round(h * maxW / w); w = maxW; }
+            canvas.width = w; canvas.height = h;
+            canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+            resolve(canvas.toDataURL('image/jpeg', quality));
+          };
+          img.onerror = reject;
+          img.src = e.target.result;
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
       });
     }
-    return list;
-  }
+    document.getElementById('posterInput').addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      try {
+        posterData = await compressImage(file);
+        document.getElementById('posterPreview').innerHTML = `<img src="${posterData}">`;
+        document.getElementById('posterFileName').textContent = file.name + ' ✅ ready';
+      } catch (err) { toast('Image load fail', 'error'); }
+    });
 
-  function renderRequests(){
-    const listDiv = document.getElementById('reqList');
-    const list = getFilteredRequests();
-    document.getElementById('reqCountBadge').textContent = allRequests.length;
+    /* ========== LANG GRID ========== */
+    function buildLangGrid(){
+      const grid = document.getElementById('langGrid');
+      grid.innerHTML = LANGUAGES.map(l => `
+        <label class="lang-item${selectedLangs.has(l.name)?' active':''}" data-lang="${l.name}">
+          <input type="checkbox" ${selectedLangs.has(l.name)?'checked':''}>
+          <span>${l.flag}</span><span>${l.name}</span>
+        </label>`).join('');
+      grid.querySelectorAll('.lang-item').forEach(el => {
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          const lang = el.dataset.lang;
+          if (selectedLangs.has(lang)) {
+            selectedLangs.delete(lang);
+            el.classList.remove('active');
+          } else {
+            selectedLangs.add(lang);
+            el.classList.add('active');
+          }
+          document.getElementById('langCount').textContent = selectedLangs.size;
+        });
+      });
+      document.getElementById('langCount').textContent = selectedLangs.size;
+    }
+    document.getElementById('clearLangsBtn').addEventListener('click', () => {
+      selectedLangs.clear();
+      buildLangGrid();
+      toast('Languages clear', 'info');
+    });
 
-    const pendingCount = allRequests.filter(r => (r.status || 'pending') === 'pending').length;
-    document.getElementById('reqPendingCount').textContent = pendingCount;
-
-    // Show bulkbar only if pending exists
-    const bulkBar = document.getElementById('reqBulkBar');
-    bulkBar.style.display = pendingCount > 0 ? 'flex' : 'none';
-    bulkBar.classList.toggle('show', pendingCount > 0);
-
-    if (!list.length){
-      listDiv.innerHTML = allRequests.length
-        ? '<div class="empty">🔍 Koi request filter se match nahi hui</div>'
-        : '<div class="empty">🎯 Abhi tak koi request nahi aayi.<br><br>User app se request aane par yahan live dikhegi.</div>';
-      return;
+    /* ========== CHIPS ========== */
+    function buildChips(){
+      const qc = document.getElementById('qualityChips');
+      qc.innerHTML = QUALITIES.map(q =>
+        `<div class="chip${selectedQualities.has(q)?' active':''}" data-q="${q}">${q}</div>`).join('');
+      qc.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
+        const q = c.dataset.q;
+        selectedQualities.has(q) ? selectedQualities.delete(q) : selectedQualities.add(q);
+        c.classList.toggle('active');
+      }));
+      const gc = document.getElementById('genreChips');
+      gc.innerHTML = GENRES.map(g =>
+        `<div class="chip${selectedGenres.has(g)?' active':''}" data-g="${g}">${g}</div>`).join('');
+      gc.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
+        const g = c.dataset.g;
+        selectedGenres.has(g) ? selectedGenres.delete(g) : selectedGenres.add(g);
+        c.classList.toggle('active');
+      }));
     }
 
-    listDiv.innerHTML = list.map(r => {
-      const status = r.status || 'pending';
-      const time = r.time || 0;
-      const deadline = time + SIX_HOURS_MS;
-      const remaining = deadline - Date.now();
-      const remInfo = formatRemaining(remaining);
-      const statusLabel = status === 'pending' ? '⏳ PENDING'
-                       : status === 'added'   ? '✅ ADDED'
-                       : '❌ REJECTED';
+    /* ========== SERVERS ========== */
+    function renderServers(){
+      const box = document.getElementById('serverList');
+      box.innerHTML = servers.map((s, i) => `
+        <div class="server-row">
+          <input type="text" placeholder="Label" value="${escapeHtml(s.label)}" data-si="${i}" data-sk="label">
+          <input type="text" placeholder="Quality" value="${escapeHtml(s.quality)}" data-si="${i}" data-sk="quality">
+          <input type="url" placeholder="https://...video.mp4" value="${escapeHtml(s.url)}" data-si="${i}" data-sk="url">
+          <button class="icon-btn" type="button" data-remove="${i}">✕</button>
+        </div>`).join('');
+      box.querySelectorAll('input').forEach(inp => {
+        inp.addEventListener('input', e => { servers[+e.target.dataset.si][e.target.dataset.sk] = e.target.value; });
+      });
+      box.querySelectorAll('[data-remove]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const i = +btn.dataset.remove;
+          if (servers.length === 1) { servers[0] = { label:'Server 1', quality:'', url:'' }; }
+          else { servers.splice(i, 1); }
+          renderServers();
+        });
+      });
+    }
+    document.getElementById('addServerBtn').addEventListener('click', () => {
+      servers.push({ label: 'Server ' + (servers.length + 1), quality: '', url: '' });
+      renderServers();
+    });
 
-      const remainHtml = status === 'pending'
-        ? `<div class="req-time-remain ${remInfo.cls}">${remInfo.text}</div>`
-        : status === 'added'
-          ? `<div class="req-time-remain" style="color:#6ee7b7">✅ Complete (${r.addedAt ? timeAgo(r.addedAt) : 'mark ki gayi'})</div>`
-          : `<div class="req-time-remain" style="color:#94a3b8">❌ Reject kar diya gaya</div>`;
+    /* ========== SWITCHES ========== */
+    ['swFeatured','swTrending'].forEach(id => {
+      const sw = document.getElementById(id);
+      sw.addEventListener('click', (e) => {
+        if (e.target.tagName !== 'INPUT') {
+          const cb = sw.querySelector('input');
+          cb.checked = !cb.checked;
+        }
+        setTimeout(() => sw.classList.toggle('on', sw.querySelector('input').checked), 0);
+      });
+    });
 
-      // ✅ Requester name display (purane 'contact' ki jagah)
-      const requesterHtml = r.requesterName
-        ? `<div class="req-item-contact">👤 Requested by: <b>${escapeHtml(r.requesterName)}</b></div>`
-        : (r.contact && r.contact !== 'Not provided'
-            ? `<div class="req-item-contact">👤 User: <b>${escapeHtml(r.contact)}</b></div>`
-            : `<div class="req-item-contact" style="opacity:.6">👤 Name not provided</div>`);
+    /* ========== SAVE MOVIE ========== */
+    document.getElementById('addBtn').addEventListener('click', async () => {
+      const name = document.getElementById('movieName').value.trim();
+      const desc = document.getElementById('movieDesc').value.trim();
+      const year = document.getElementById('movieYear').value.trim();
+      const duration = document.getElementById('movieDuration').value.trim();
+      const rating = document.getElementById('movieRating').value.trim();
+      const download = document.getElementById('movieDownload').value.trim();
+      const trailer = document.getElementById('movieTrailer').value.trim();
+      const subtitle = document.getElementById('movieSubtitle').value.trim();
+      const featured = document.getElementById('movieFeatured').checked;
+      const trending = document.getElementById('movieTrending').checked;
 
-      return `
-      <div class="req-item status-${status}">
-        <div class="req-item-icon">${status === 'pending' ? '🎬' : status === 'added' ? '✅' : '❌'}</div>
-        <div class="req-item-info">
-          <span class="req-status-badge req-status-${status}">${statusLabel}</span>
-          <div class="req-item-name">🎬 ${escapeHtml(r.name || 'Untitled')}</div>
-          <div class="req-item-meta">
-            <span class="mini-badge badge-lang">🌐 ${escapeHtml(r.lang || 'Any')}</span>
-            <span class="mini-badge badge-quality">🎞️ ${escapeHtml(r.quality || 'Any')}</span>
-          </div>
-          ${requesterHtml}
-          <div class="req-item-time">📅 ${formatDate(time)} · ${timeAgo(time)}</div>
-          ${remainHtml}
-        </div>
-        <div class="req-item-actions">
-          ${status === 'pending' ? `
-            <button class="act ok" data-req-action="add" data-id="${r.id}">✅ Added</button>
-            <button class="act purple" data-req-action="prefill" data-id="${r.id}">✏️ Form</button>
-            <button class="act warn" data-req-action="reject" data-id="${r.id}">❌ Reject</button>
-          ` : `
-            <button class="act purple" data-req-action="prefill" data-id="${r.id}">✏️ Form</button>
-            <button class="act" data-req-action="pending" data-id="${r.id}">↩️ Pending</button>
-          `}
-          <button class="act" data-req-action="copy" data-id="${r.id}">📋 Copy</button>
-          <button class="act del" data-req-action="del" data-id="${r.id}">🗑️ Del</button>
-        </div>
-      </div>`;
-    }).join('');
-  }
+      const cleanServers = servers
+        .map(s => ({ label: (s.label||'').trim() || 'Server', quality: (s.quality||'').trim(), url: (s.url||'').trim() }))
+        .filter(s => s.url);
 
-  ['reqSearch','reqFilterStatus','reqSortBy'].forEach(id => {
-    document.getElementById(id).addEventListener('input', renderRequests);
-    document.getElementById(id).addEventListener('change', renderRequests);
-  });
+      if (!name) return showStatus('❌ Movie ka naam likho!', 'error');
+      if (!posterData) return showStatus('❌ Poster select / URL daalo!', 'error');
+      if (selectedLangs.size === 0) return showStatus('❌ Ek Language select karo!', 'error');
+      if (!desc) return showStatus('❌ Description likho!', 'error');
+      if (!cleanServers.length) return showStatus('❌ Ek video link daalo!', 'error');
+      const bad = cleanServers.find(s => !/^https?:\/\//i.test(s.url));
+      if (bad) return showStatus('❌ Video link http se start hona chahiye!', 'error');
+      if (selectedQualities.size === 0) return showStatus('❌ Ek Quality chuno!', 'error');
 
-  // Auto-refresh countdown every 30s
-  setInterval(() => {
-    const activeTab = document.querySelector('.tab.active')?.dataset.tab;
-    if (activeTab === 'requests') renderRequests();
-  }, 30000);
+      const btn = document.getElementById('addBtn');
+      btn.disabled = true;
+      btn.textContent = editingId ? '⏳ Updating...' : '⏳ Adding...';
 
-  /* ---------- Request Actions ---------- */
-  window.setReqStatus = async function(id, status){
-    try {
-      const payload = { status, statusAt: Date.now() };
-      if (status === 'added') payload.addedAt = Date.now();
-      await update(ref(db, 'requests/' + id), payload);
-      toast(status === 'added' ? '✅ Added mark ho gayi' : status === 'rejected' ? '❌ Reject ho gayi' : '↩️ Pending me daal di', 'success');
-    } catch (e) { toast('Fail: ' + e.message, 'error'); }
-  };
+      const qualitiesArr = [...selectedQualities];
+      const langsArr = [...selectedLangs];
+      const payload = {
+        name, desc,
+        langs: langsArr, lang: langsArr[0],
+        year: year || '', duration: duration || '', rating: rating || '',
+        poster: posterData, qualities: qualitiesArr,
+        genres: [...selectedGenres], servers: cleanServers,
+        download: download || '', trailer: trailer || '', subtitle: subtitle || '',
+        featured, trending, updatedAt: Date.now(),
+        link: cleanServers[0].url, quality: qualitiesArr[0] || 'HD'
+      };
 
-  window.deleteRequest = async function(id){
-    const r = allRequests.find(x => x.id === id);
-    if (!confirm(`"${r ? r.name : 'Ye request'}" delete karni hai?`)) return;
-    try {
-      await remove(ref(db, 'requests/' + id));
-      toast('🗑️ Request delete ho gayi', 'success');
-    } catch (e) { toast('Fail: ' + e.message, 'error'); }
-  };
-
-  window.prefillFromRequest = function(id){
-    const r = allRequests.find(x => x.id === id);
-    if (!r) return;
-    goTab('add');
-    document.getElementById('movieName').value = r.name || '';
-    if (r.lang && r.lang !== 'Any'){
-      const match = LANGUAGES.find(l => l.name.toLowerCase() === String(r.lang).toLowerCase());
-      if (match){
-        selectedLangs = new Set([match.name]);
-        buildLangGrid();
-      } else {
-        toast('⚠️ Language "' + r.lang + '" list me nahi mili, manually chuno', 'info');
+      try {
+        if (editingId) {
+          await update(ref(db, 'movies/' + editingId), payload);
+          toast('✅ Movie update ho gayi!', 'success');
+        } else {
+          payload.time = Date.now();
+          await set(push(moviesRef), payload);
+          toast('✅ Movie add ho gayi!', 'success');
+        }
+        cancelEdit(true);
+        goTab('list');
+      } catch (err) {
+        console.error(err);
+        showStatus('❌ Error: ' + err.message, 'error');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = editingId ? '💾 UPDATE MOVIE' : '➕ ADD MOVIE';
       }
+').addEventListener('click    });
+
+    function resetForm(){
+      ['movieName','movieDesc','movieYear','movieDuration','movieRating','movieDownload','movieTrailer','movieSubtitle','posterUrl'].forEach(id => document.getElementById(id).value = '');
+      document.getElementById('movieFeatured').checked = false;
+      document.getElementById('movieTrending').checked = false;
+      document.getElementById('swFeatured').classList.remove('on');
+      document.getElementById('swTrending').classList.remove('on');
+      document.getElementById('posterInput').value = '';
+      document.getElementById('posterFileName').textContent = 'JPG, PNG — auto compress hoga';
+      document.getElementById('posterPreview').innerHTML = '<span>No Image</span>';
+      posterData = null;
+      selectedLangs = new Set();
+      selectedQualities = new Set(['1080p']);
+      selectedGenres = new Set();
+      servers = [{ label: 'Server 1', quality: '1080p', url: '' }];
+      buildLangGrid(); buildChips(); renderServers();
     }
-    if (r.quality && r.quality !== 'Any'){
-      selectedQualities = new Set([r.quality]);
+    function cancelEdit(silent){
+      editingId = null;
+      resetForm();
+      document.getElementById('formTitle').textContent = '➕ Nai Movie Add Karo';
+      document.getElementById('addBtn').textContent = '➕ ADD MOVIE';
+      document.getElementById('cancelEditBtn').style.display = 'none';
+      if (!silent) toast('Edit cancel', 'info');
+    }
+    document.getElementById('cancelEditBtn', () => cancelEdit());
+
+    function loadForEdit(id){
+      const m = allMovies.find(x => x.id === id);
+      if (!m) return;
+      editingId = id;
+      goTab('add');
+      document.getElementById('movieName').value = m.name || '';
+      document.getElementById('movieDesc').value = m.desc || '';
+      document.getElementById('movieYear').value = m.year || '';
+      document.getElementById('movieDuration').value = m.duration || '';
+      document.getElementById('movieRating').value = m.rating || '';
+      document.getElementById('movieDownload').value = m.download || '';
+      document.getElementById('movieTrailer').value = m.trailer || '';
+      document.getElementById('movieSubtitle').value = m.subtitle || '';
+      document.getElementById('movieFeatured').checked = !!m.featured;
+      document.getElementById('movieTrending').checked = !!m.trending;
+      document.getElementById('swFeatured').classList.toggle('on', !!m.featured);
+      document.getElementById('swTrending').classList.toggle('on', !!m.trending);
+      posterData = m.poster || null;
+      document.getElementById('posterPreview').innerHTML = m.poster ? `<img src="${escapeHtml(m.poster)}">` : '<span>No Image</span>';
+      document.getElementById('posterUrl').value = (m.poster && m.poster.startsWith('http')) ? m.poster : '';
+      const langsToLoad = Array.isArray(m.langs) && m.langs.length ? m.langs : (m.lang ? [m.lang] : []);
+      selectedLangs = new Set(langsToLoad);
+      buildLangGrid();
+      selectedQualities = new Set(m.qualities || (m.quality ? [m.quality] : ['1080p']));
+      selectedGenres = new Set(m.genres || []);
       buildChips();
+      servers = (m.servers && m.servers.length)
+        ? m.servers.map(s => ({ label: s.label || '', quality: s.quality || '', url: s.url || '' }))
+        : [{ label: 'Server 1', quality: m.quality || '', url: m.link || '' }];
+      renderServers();
+      document.getElementById('formTitle').textContent = '✏️ Movie Edit Karo';
+      document.getElementById('addBtn').textContent = '💾 UPDATE MOVIE';
+      document.getElementById('cancelEditBtn').style.display = 'inline-block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      toast('✏️ Edit mode on', 'info');
     }
-    toast('📝 Request se form auto-fill ho gaya', 'info');
-  };
 
-  window.markAllPendingAdded = async function(){
-    const pending = allRequests.filter(r => (r.status || 'pending') === 'pending');
-    if (!pending.length) return toast('Koi pending request nahi hai', 'info');
-    if (!confirm(`${pending.length} pending requests ko "Added" mark karna hai?`)) return;
-    try {
-      await Promise.all(pending.map(r =>
-        update(ref(db, 'requests/' + r.id), { status: 'added', statusAt: Date.now(), addedAt: Date.now() })
-      ));
-      toast(`✅ ${pending.length} requests added mark ho gayi`, 'success');
-    } catch (e) { toast('Fail: ' + e.message, 'error'); }
-  };
+    /* ========== DELETE / TOGGLE ========== */
+    async function deleteMovie(id){
+      const m = allMovies.find(x => x.id === id);
+      if (!confirm(`"${m ? m.name : 'Ye movie'}" delete?`)) return;
+      try {
+        await remove(ref(db, 'movies/' + id));
+        selectedIds.delete(id);
+        toast('🗑️ Delete', 'success');
+      } catch (err) { toast('Delete fail: ' + err.message, 'error'); }
+    }
+    async function toggleFeatured(id){
+      const m = allMovies.find(x => x.id === id);
+      if (!m) return;
+      try {
+        await update(ref(db, 'movies/' + id), { featured: !m.featured });
+        toast(!m.featured ? '⭐ Featured on' : '☆ Off', 'success');
+      } catch (e) { toast('Fail: ' + e.message, 'error'); }
+    }
+    document.getElementById('bulkDelBtn').addEventListener('click', async () => {
+      if (selectedIds.size === 0) return toast('Pehle select karo', 'error');
+      if (!confirm(`${selectedIds.size} movies delete?`)) return;
+      try {
+        await Promise.all([...selectedIds].map(id => remove(ref(db, 'movies/' + id))));
+        toast(`🗑️ ${selectedIds.size} deleted`, 'success');
+        selectedIds.clear();
+      } catch (e) { toast('Fail: ' + e.message, 'error'); }
+    });
+    document.getElementById('selectAllBtn').addEventListener('click', () => {
+      const list = getFiltered();
+      const allSel = list.every(m => selectedIds.has(m.id));
+      list.forEach(m => allSel ? selectedIds.delete(m.id) : selectedIds.add(m.id));
+      renderList();
+    });
+    document.getElementById('delAllMoviesBtn').addEventListener('click', async () => {
+      if (!allMovies.length) return toast('Koi movie nahi', 'error');
+      if (!confirm('⚠️ SAARI movies delete?') || !confirm('🚨 Pakka?')) return;
+      try { await remove(moviesRef); toast('🧹 Sab delete', 'success'); }
+      catch (e) { toast('Fail', 'error'); }
+    });
+    document.getElementById('delAllReqBtn').addEventListener('click', async () => {
+      if (!allRequests.length) return toast('Koi request nahi', 'error');
+      if (!confirm('⚠️ SAARI requests delete?')) return;
+      try { await remove(requestsRef); toast('🧹 Deleted', 'success'); }
+      catch (e) { toast('Fail', 'error'); }
+    });
 
-  window.clearRejectedRequests = async function(){
-    const rejected = allRequests.filter(r => r.status === 'rejected');
-    if (!rejected.length) return toast('Koi rejected request nahi hai', 'info');
-    if (!confirm(`${rejected.length} rejected requests delete karni hain?`)) return;
-    try {
-      await Promise.all(rejected.map(r => remove(ref(db, 'requests/' + r.id))));
-      toast(`🗑️ ${rejected.length} requests delete ho gayi`, 'success');
-    } catch (e) { toast('Fail: ' + e.message, 'error'); }
-  };
+    /* ========== PREVIEW ========== */
+    function openPreview(id){
+      const m = allMovies.find(x => x.id === id);
+      if (!m) return;
+      const qs = (m.qualities || (m.quality ? [m.quality] : []));
+      const langs = Array.isArray(m.langs) && m.langs.length ? m.langs : (m.lang ? [m.lang] : []);
+      const srv = (m.servers && m.servers.length) ? m.servers : (m.link ? [{label:'S1', quality:m.quality||'', url:m.link}] : []);
+      document.getElementById('previewBody').innerHTML = `
+        ${m.poster ? `<img class="pv-poster" src="${escapeHtml(m.poster)}">` : ''}
+        <h2 style="font-size:19px;color:#f1f5f9;margin-bottom:10px">🎬 ${escapeHtml(m.name)}</h2>
+        <div class="item-badges" style="margin-bottom:12px">
+          ${langs.map(l=>`<span class="mini-badge badge-lang">🌐 ${escapeHtml(l)}</span>`).join('')}
+          ${qs.map(q=>`<span class="mini-badge badge-quality">🎞️ ${escapeHtml(q)}</span>`).join('')}
+          ${m.year?`<span class="mini-badge badge-year">📅 ${escapeHtml(m.year)}</span>`:''}
+          ${m.rating?`<span class="mini-badge badge-rate">⭐ ${escapeHtml(m.rating)}</span>`:''}
+        </div>
+        <p style="font-size:13px;color:#94a3b8;line-height:1.6;margin-bottom:14px">${escapeHtml(m.desc||'')}</p>
+        <div style="font-size:12px;color:#cbd5e1;font-weight:700;margin-bottom:8px">🔗 LINKS</div>
+        ${srv.map(s=>`<a class="pv-link" href="${escapeHtml(s.url)}" target="_blank">${escapeHtml(s.label)} • ${escapeHtml(s.url)}</a>`).join('')}
+      `;
+      document.getElementById('previewModal').classList.add('show');
+    }
+    document.getElementById('closePreviewBtn').addEventListener('click', () => {
+      document.getElementById('previewModal').classList.remove('show');
+    });
+    document.getElementById('previewModal').addEventListener('click', e => {
+      if (e.target.id === 'previewModal') document.getElementById('previewModal').classList.remove('show');
+    });
 
-  document.getElementById('reqList').addEventListener('click', (e) => {
-    const btn = e.target.closest('[data-req-action]');
-    if (!btn) return;
-    const id = btn.dataset.id;
-    const act = btn.dataset.reqAction;
-    if (act === 'add') setReqStatus(id, 'added');
-    else if (act === 'reject') setReqStatus(id, 'rejected');
-    else if (act === 'pending') setReqStatus(id, 'pending');
-    else if (act === 'del') deleteRequest(id);
-    else if (act === 'prefill') prefillFromRequest(id);
-    else if (act === 'copy'){
+    /* ========== FILTER MOVIES ========== */
+    function getFiltered(){
+      const q = document.getElementById('searchBox').value.trim().toLowerCase();
+      const fl = document.getElementById('filterLang').value;
+      const fq = document.getElementById('filterQuality').value;
+      const fg = document.getElementById('filterGenre').value;
+      const sort = document.getElementById('sortBy').value;
+      let list = allMovies.filter(m => {
+        const qs = m.qualities || (m.quality ? [m.quality] : []);
+        const ls = Array.isArray(m.langs) && m.langs.length ? m.langs : (m.lang ? [m.lang] : []);
+        if (q && !((m.name||'').toLowerCase().includes(q) || (m.desc||'').toLowerCase().includes(q))) return false;
+        if (fl && !ls.includes(fl)) return false;
+        if (fq && !qs.includes(fq)) return false;
+        if (fg && !(m.genres||[]).includes(fg)) return false;
+        return true;
+      });
+      if (sort === 'newest') list.sort((a,b) => (b.time||0) - (a.time||0));
+      else if (sort === 'oldest') list.sort((a,b) => (a.time||0) - (b.time||0));
+      else if (sort === 'name') list.sort((a,b) => (a.name||'').localeCompare(b.name||''));
+      else if (sort === 'rating') list.sort((a,b) => (parseFloat(b.rating)||0) - (parseFloat(a.rating)||0));
+      else if (sort === 'year') list.sort((a,b) => (parseInt(b.year)||0) - (parseInt(a.year)||0));
+      return list;
+    }
+    ['searchBox','filterLang','filterQuality','filterGenre','sortBy'].forEach(id => {
+      document.getElementById(id).addEventListener('input', renderList);
+      document.getElementById(id).addEventListener('change', renderList);
+    });
+    function fillFilterOptions(){
+      const langs = [...new Set(allMovies.flatMap(m => Array.isArray(m.langs) && m.langs.length ? m.langs : (m.lang ? [m.lang] : [])))].sort();
+      const quals = [...new Set(allMovies.flatMap(m => m.qualities || (m.quality ? [m.quality] : [])))].sort();
+      const gens  = [...new Set(allMovies.flatMap(m => m.genres || []))].sort();
+      const setOpts = (id, arr, ph) => {
+        const sel = document.getElementById(id);
+        const cur = sel.value;
+        sel.innerHTML = `<option value="">${ph}</option>` + arr.map(v => `<option>${escapeHtml(v)}</option>`).join('');
+        if (arr.includes(cur)) sel.value = cur;
+      };
+      setOpts('filterLang', langs, '🌐 All Lang');
+      setOpts('filterQuality', quals, '🎞️ All Quality');
+      setOpts('filterGenre', gens, '🎭 All Genre');
+    }
+
+    /* ========== RENDER LIST ========== */
+    function renderList(){
+      const listDiv = document.getElementById('movieList');
+      const list = getFiltered();
+      document.getElementById('countBadge').textContent = allMovies.length;
+      if (!list.length){
+        listDiv.innerHTML = allMovies.length ? '<div class="empty">🔍 Koi match nahi</div>'
+          : '<div class="empty">🎞️ Abhi koi movie nahi. Add tab me jao!</div>';
+        document.getElementById('selCount').textContent = selectedIds.size;
+        document.getElementById('bulkBar').classList.toggle('show', selectedIds.size > 0);
+        return;
+      }
+      listDiv.innerHTML = list.map(m => {
+        const qualities = m.qualities || (m.quality ? [m.quality] : []);
+        const langs = Array.isArray(m.langs) && m.langs.length ? m.langs : (m.lang ? [m.lang] : []);
+        const srvCount = (m.servers && m.servers.length) ? m.servers.length : (m.link ? 1 : 0);
+        const posterImg = m.poster ? `<img class="item-poster" src="${escapeHtml(m.poster)}">`
+          : `<div class="item-poster" style="display:flex;align-items:center;justify-content:center;color:#64748b;font-size:20px">🎬</div>`;
+        return `
+        <div class="movie-item ${selectedIds.has(m.id)?'sel':''}" data-id="${m.id}">
+          <input type="checkbox" class="chk" data-chk="${m.id}" ${selectedIds.has(m.id)?'checked':''}>
+          ${posterImg}
+          <div class="item-info">
+            <div class="item-name">🎬 ${escapeHtml(m.name)}</div>
+            <div class="item-badges">
+              ${langs.slice(0,3).map(l=>`<span class="mini-badge badge-lang">🌐 ${escapeHtml(l)}</span>`).join('')}
+              ${qualities.slice(0,2).map(q=>`<span class="mini-badge badge-quality">🎞️ ${escapeHtml(q)}</span>`).join('')}
+              ${m.year?`<span class="mini-badge badge-year">📅 ${escapeHtml(m.year)}</span>`:''}
+              ${m.rating?`<span class="mini-badge badge-rate">⭐ ${escapeHtml(m.rating)}</span>`:''}
+              ${m.featured?'<span class="mini-badge badge-feat">⭐ FEAT</span>':''}
+              ${m.trending?'<span class="mini-badge badge-trend">🔥 TREND</span>':''}
+            </div>
+            <div class="item-desc">${escapeHtml(m.desc||'No description')}</div>
+            <div style="font-size:11px;color:#64748b;margin-top:6px">🔗 ${srvCount} server${srvCount>1?'s':''}</div>
+          </div>
+          <div class="item-actions">
+            <button class="act edit" data-action="edit" data-id="${m.id}">✏️ Edit</button>
+            <button class="act" data-action="preview" data-id="${m.id}">👁️ View</button>
+            <button class="act" data-action="copy" data-id="${m.id}">📋 Link</button>
+            <button class="act star" data-action="star" data-id="${m.id}">${m.featured?'☆ Unfeat':'⭐ Feat'}</button>
+            <button class="act del" data-action="del" data-id="${m.id}">🗑️ Del</button>
+          </div>
+        </div>`;
+      }).join('');
+      document.getElementById('selCount').textContent = selectedIds.size;
+      document.getElementById('bulkBar').classList.toggle('show', selectedIds.size > 0);
+    }
+
+    document.getElementById('movieList').addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-action]');
+      if (btn){
+        const id = btn.dataset.id;
+        const act = btn.dataset.action;
+        if (act === 'edit') loadForEdit(id);
+        else if (act === 'del') deleteMovie(id);
+        else if (act === 'preview') openPreview(id);
+        else if (act === 'star') toggleFeatured(id);
+        else if (act === 'copy'){
+          const m = allMovies.find(x => x.id === id);
+          copyText((m.servers && m.servers[0] && m.servers[0].url) || m.link || '');
+        }
+        return;
+      }
+      const chk = e.target.closest('[data-chk]');
+      if (chk){
+        const id = chk.dataset.chk;
+        chk.checked ? selectedIds.add(id) : selectedIds.delete(id);
+        chk.closest('.movie-item').classList.toggle('sel', chk.checked);
+        document.getElementById('selCount').textContent = selectedIds.size;
+        document.getElementById('bulkBar').classList.toggle('show', selectedIds.size > 0);
+      }
+    });
+
+    /* ========== REQUESTS ========== */
+    function getFilteredRequests(){
+      const q = document.getElementById('reqSearch').value.trim().toLowerCase();
+      const fs = document.getElementById('reqFilterStatus').value;
+      const sort = document.getElementById('reqSortBy').value;
+      let list = allRequests.filter(r => {
+        if (q){
+          const hay = ((r.requesterName||'') + ' ' + (r.name||'') + ' ' + (r.lang||'') + ' ' + (r.quality||'')).toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        if (fs && (r.status || 'pending') !== fs) return false;
+        return true;
+      });
+      if (sort === 'newest') list.sort((a,b) => (b.time||0) - (a.time||0));
+      else if (sort === 'oldest') list.sort((a,b) => (a.time||0) - (b.time||0));
+      else if (sort === 'deadline'){
+        list.sort((a,b) => {
+          const aS = a.status || 'pending', bS = b.status || 'pending';
+          if (aS === 'pending' && bS !== 'pending') return -1;
+          if (aS !== 'pending' && bS === 'pending') return 1;
+          return ((a.time||0) + SIX_HOURS_MS) - ((b.time||0) + SIX_HOURS_MS);
+        });
+      }
+      return list;
+    }
+
+    function renderRequests(){
+      const listDiv = document.getElementById('reqList');
+      const list = getFilteredRequests();
+      document.getElementById('reqCountBadge').textContent = allRequests.length;
+      const pendingCount = allRequests.filter(r => (r.status || 'pending') === 'pending').length;
+      document.getElementById('reqPendingCount').textContent = pendingCount;
+      document.getElementById('reqBulkBar').classList.toggle('show', pendingCount > 0);
+
+      if (!list.length){
+        listDiv.innerHTML = allRequests.length
+          ? '<div class="empty">🔍 Koi match nahi</div>'
+          : '<div class="empty">🎯 Abhi tak koi request nahi aayi.</div>';
+        return;
+      }
+
+      listDiv.innerHTML = list.map(r => {
+        const status = r.status || 'pending';
+        const time = r.time || 0;
+        const remaining = (time + SIX_HOURS_MS) - Date.now();
+        const remInfo = formatRemaining(remaining);
+        const statusLabel = status === 'pending' ? '⏳ PENDING' : status === 'added' ? '✅ ADDED' : '❌ REJECTED';
+        const remainHtml = status === 'pending'
+          ? `<div class="req-time-remain ${remInfo.cls}">${remInfo.text}</div>`
+          : status === 'added'
+            ? `<div class="req-time-remain" style="color:#6ee7b7">✅ Complete</div>`
+            : `<div class="req-time-remain" style="color:#94a3b8">❌ Rejected</div>`;
+        const requesterHtml = r.requesterName
+          ? `<div class="req-item-contact">👤 Requested by: <b>${escapeHtml(r.requesterName)}</b></div>`
+          : `<div class="req-item-contact" style="opacity:.6">👤 Name not provided</div>`;
+        return `
+        <div class="req-item status-${status}">
+          <div class="req-item-icon">${status === 'pending' ? '🎬' : status === 'added' ? '✅' : '❌'}</div>
+          <div class="req-item-info">
+            <span class="req-status-badge req-status-${status}">${statusLabel}</span>
+            <div class="req-item-name">🎬 ${escapeHtml(r.name || 'Untitled')}</div>
+            <div class="req-item-meta">
+              <span class="mini-badge badge-lang">🌐 ${escapeHtml(r.lang || 'Any')}</span>
+              <span class="mini-badge badge-quality">🎞️ ${escapeHtml(r.quality || 'Any')}</span>
+            </div>
+            ${requesterHtml}
+            <div class="req-item-time">📅 ${formatDate(time)} · ${timeAgo(time)}</div>
+            ${remainHtml}
+          </div>
+          <div class="req-item-actions">
+            ${status === 'pending' ? `
+              <button class="act ok" data-req-action="add" data-id="${r.id}">✅ Added</button>
+              <button class="act purple" data-req-action="prefill" data-id="${r.id}">✏️ Form</button>
+              <button class="act warn" data-req-action="reject" data-id="${r.id}">❌ Reject</button>
+            ` : `
+              <button class="act purple" data-req-action="prefill" data-id="${r.id}">✏️ Form</button>
+              <button class="act" data-req-action="pending" data-id="${r.id}">↩️ Pending</button>
+            `}
+            <button class="act" data-req-action="copy" data-id="${r.id}">📋 Copy</button>
+            <button class="act del" data-req-action="del" data-id="${r.id}">🗑️ Del</button>
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    ['reqSearch','reqFilterStatus','reqSortBy'].forEach(id => {
+      document.getElementById(id).addEventListener('input', renderRequests);
+      document.getElementById(id).addEventListener('change', renderRequests);
+    });
+
+    setInterval(() => {
+      if (document.querySelector('.tab.active')?.dataset.tab === 'requests') renderRequests();
+    }, 30000);
+
+    async function setReqStatus(id, status){
+      try {
+        const payload = { status, statusAt: Date.now() };
+        if (status === 'added') payload.addedAt = Date.now();
+        await update(ref(db, 'requests/' + id), payload);
+        toast(status === 'added' ? '✅ Added' : status === 'rejected' ? '❌ Rejected' : '↩️ Pending', 'success');
+      } catch (e) { toast('Fail: ' + e.message, 'error'); }
+    }
+    async function deleteRequest(id){
       const r = allRequests.find(x => x.id === id);
-      if (r) {
-        // ✅ Copy me requesterName bhi add kiya
-        copyText(`👤 ${r.requesterName || '—'} | 🎬 ${r.name} | 🌐 ${r.lang||'Any'} | 🎞️ ${r.quality||'Any'}`);
+      if (!confirm(`"${r ? r.name : 'Ye request'}" delete?`)) return;
+      try { await remove(ref(db, 'requests/' + id)); toast('🗑️ Deleted', 'success'); }
+      catch (e) { toast('Fail', 'error'); }
+    }
+    function prefillFromRequest(id){
+      const r = allRequests.find(x => x.id === id);
+      if (!r) return;
+      goTab('add');
+      document.getElementById('movieName').value = r.name || '';
+      if (r.lang && r.lang !== 'Any'){
+        const match = LANGUAGES.find(l => l.name.toLowerCase() === String(r.lang).toLowerCase());
+        if (match){ selectedLangs = new Set([match.name]); buildLangGrid(); }
       }
-    }
-  });
-
-  /* ================= EXPORT / IMPORT ================= */
-  window.exportJSON = function(){
-    if (!allMovies.length) return toast('Koi data nahi hai', 'error');
-    const blob = new Blob([JSON.stringify(allMovies, null, 2)], { type: 'application/json' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'movies-backup-' + new Date().toISOString().slice(0,10) + '.json';
-    a.click();
-    URL.revokeObjectURL(a.href);
-    toast('⬇️ Backup download ho gaya', 'success');
-  };
-
-  document.getElementById('importFile').addEventListener('change', async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    if (!confirm('Import karne se movies ADD hongi (purani delete nahi hongi). Continue?')) {
-      e.target.value = ''; return;
-    }
-    try {
-      const text = await file.text();
-      const data = JSON.parse(text);
-      if (!Array.isArray(data)) throw new Error('JSON array hona chahiye');
-      let ok = 0;
-      for (const m of data){
-        if (!m || !m.name) continue;
-        const { id, ...rest } = m;
-        const newRef = push(moviesRef);
-        await set(newRef, { ...rest, time: rest.time || Date.now() });
-        ok++;
+      if (r.quality && r.quality !== 'Any'){
+        selectedQualities = new Set([r.quality]);
+        buildChips();
       }
-      toast(`✅ ${ok} movies import ho gayi`, 'success');
-    } catch (err) {
-      toast('Import fail: ' + err.message, 'error');
+      toast('📝 Form auto-fill', 'info');
     }
-    e.target.value = '';
-  });
+    document.getElementById('markAllAddedBtn').addEventListener('click', async () => {
+      const pending = allRequests.filter(r => (r.status || 'pending') === 'pending');
+      if (!pending.length) return toast('Koi pending nahi', 'info');
+      if (!confirm(`${pending.length} requests "Added" mark?`)) return;
+      try {
+        await Promise.all(pending.map(r => update(ref(db, 'requests/' + r.id), { status: 'added', statusAt: Date.now(), addedAt: Date.now() })));
+        toast(`✅ ${pending.length} added`, 'success');
+      } catch (e) { toast('Fail', 'error'); }
+    });
+    document.getElementById('clearRejectedBtn').addEventListener('click', async () => {
+      const rejected = allRequests.filter(r => r.status === 'rejected');
+      if (!rejected.length) return toast('Koi rejected nahi', 'info');
+      if (!confirm(`${rejected.length} rejected delete?`)) return;
+      try {
+        await Promise.all(rejected.map(r => remove(ref(db, 'requests/' + r.id))));
+        toast(`🗑️ ${rejected.length} deleted`, 'success');
+      } catch (e) { toast('Fail', 'error'); }
+    });
+    document.getElementById('reqList').addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-req-action]');
+      if (!btn) return;
+      const id = btn.dataset.id;
+      const act = btn.dataset.reqAction;
+      if (act === 'add') setReqStatus(id, 'added');
+      else if (act === 'reject') setReqStatus(id, 'rejected');
+      else if (act === 'pending') setReqStatus(id, 'pending');
+      else if (act === 'del') deleteRequest(id);
+      else if (act === 'prefill') prefillFromRequest(id);
+      else if (act === 'copy'){
+        const r = allRequests.find(x => x.id === id);
+        if (r) copyText(`👤 ${r.requesterName || '—'} | 🎬 ${r.name} | 🌐 ${r.lang||'Any'} | 🎞️ ${r.quality||'Any'}`);
+      }
+    });
 
-  /* ================= LIVE DATA — MOVIES ================= */
-  onValue(moviesRef, (snapshot) => {
-    const data = snapshot.val();
-    allMovies = data
-      ? Object.entries(data).map(([id, val]) => ({ id, ...val }))
-      : [];
+    /* ========== EXPORT / IMPORT ========== */
+    document.getElementById('exportBtn').addEventListener('click', () => {
+      if (!allMovies.length) return toast('Koi data nahi', 'error');
+      const blob = new Blob([JSON.stringify(allMovies, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'movies-backup-' + new Date().toISOString().slice(0,10) + '.json';
+      a.click();
+      URL.revokeObjectURL(a.href);
+      toast('⬇️ Backup download', 'success');
+    });
+    document.getElementById('importFile').addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      if (!confirm('Import karein? (Purani delete nahi hongi)')) { e.target.value = ''; return; }
+      try {
+        const data = JSON.parse(await file.text());
+        if (!Array.isArray(data)) throw new Error('Array expected');
+        let ok = 0;
+        for (const m of data){
+          if (!m || !m.name) continue;
+          const { id, ...rest } = m;
+          await set(push(moviesRef), { ...rest, time: rest.time || Date.now() });
+          ok++;
+        }
+        toast(`✅ ${ok} movies import`, 'success');
+      } catch (err) { toast('Import fail: ' + err.message, 'error'); }
+      e.target.value = '';
+    });
 
-    document.getElementById('statTotal').textContent = allMovies.length;
-    document.getElementById('statFeatured').textContent = allMovies.filter(m => m.featured).length;
-    document.getElementById('statTrending').textContent = allMovies.filter(m => m.trending).length;
-    document.getElementById('statLangs').textContent =
-      new Set(allMovies.flatMap(m => Array.isArray(m.langs) && m.langs.length ? m.langs : (m.lang ? [m.lang] : []))).size;
+    /* ========== LIVE DATA ========== */
+    onValue(moviesRef, (snapshot) => {
+      const data = snapshot.val();
+      allMovies = data ? Object.entries(data).map(([id, val]) => ({ id, ...val })) : [];
+      document.getElementById('statTotal').textContent = allMovies.length;
+      document.getElementById('statFeatured').textContent = allMovies.filter(m => m.featured).length;
+      document.getElementById('statTrending').textContent = allMovies.filter(m => m.trending).length;
+      document.getElementById('statLangs').textContent =
+        new Set(allMovies.flatMap(m => Array.isArray(m.langs) && m.langs.length ? m.langs : (m.lang ? [m.lang] : []))).size;
+      fillFilterOptions();
+      renderList();
+    }, (err) => {
+      console.error('Movies read error:', err);
+      document.getElementById('movieList').innerHTML = '<div class="empty">❌ Firebase read fail. Rules check karein.</div>';
+      statusBar.textContent = '❌ Firebase read failed: ' + err.message;
+      statusBar.className = 'status-bar err';
+    });
 
-    fillFilterOptions();
-    renderList();
-  });
+    onValue(requestsRef, (snapshot) => {
+      const data = snapshot.val();
+      allRequests = data ? Object.entries(data).map(([id, val]) => ({ id, ...val })) : [];
+      const pending = allRequests.filter(r => (r.status || 'pending') === 'pending').length;
+      document.getElementById('statRequests').textContent = allRequests.length;
+      const badge = document.getElementById('reqTabBadge');
+      badge.textContent = pending;
+      badge.classList.toggle('show', pending > 0);
+      if (lastPendingCount !== 0 && pending > lastPendingCount){
+        toast(`🔔 ${pending - lastPendingCount} nayi request!`, 'info');
+      }
+      lastPendingCount = pending;
+      renderRequests();
+    }, (err) => {
+      console.error('Requests read error:', err);
+    });
 
-  /* ================= LIVE DATA — REQUESTS 🎯 ================= */
-  onValue(requestsRef, (snapshot) => {
-    const data = snapshot.val();
-    allRequests = data
-      ? Object.entries(data).map(([id, val]) => ({ id, ...val }))
-      : [];
+    /* ========== INIT ========== */
+    buildLangGrid();
+    buildChips();
+    renderServers();
 
-    const pending = allRequests.filter(r => (r.status || 'pending') === 'pending').length;
-
-    document.getElementById('statRequests').textContent = allRequests.length;
-
-    // Tab badge
-    const badge = document.getElementById('reqTabBadge');
-    badge.textContent = pending;
-    badge.classList.toggle('show', pending > 0);
-
-    // Notify on new pending
-    if (lastPendingCount !== 0 && pending > lastPendingCount){
-      const diff = pending - lastPendingCount;
-      toast(`🔔 ${diff} nayi movie request aayi!`, 'info');
-    }
-    lastPendingCount = pending;
-
-    renderRequests();
-  });
-
-  /* ================= INIT ================= */
-  buildLangGrid();
-  buildChips();
-  renderServers();
+  } catch (err) {
+    console.error('❌ Firebase init failed:', err);
+    const statusBar = document.getElementById('statusBar');
+    statusBar.textContent = '❌ Firebase load fail: ' + err.message + ' | Internet check karein';
+    statusBar.className = 'status-bar err';
+  }
 </script>
 </body>
 </html>
