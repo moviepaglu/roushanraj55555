@@ -36,7 +36,7 @@
   }
 
   .card{background:rgba(30,41,59,.8);border-radius:20px;padding:22px;margin-bottom:18px;border:1px solid #334155;box-shadow:0 10px 30px rgba(0,0,0,.3)}
-  .card h2{font-size:17px;margin-bottom:16px;color:#f1f5f9;border-left:4px solid #f59e0b;padding-left:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+  .card h2{font-size:17px;margin-bottom:16px;color:#f1f5f9;border-left:41px solid #f59e0b;padding-left:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
   label{display:block;font-size:13px;color:#cbd5e1;margin-bottom:6px;font-weight:600;margin-top:14px}
   label:first-of-type{margin-top:0}
   .req{color:#ef4444}
@@ -90,7 +90,7 @@
   .add-server:hover{border-color:#f59e0b;color:#f59e0b}
 
   .switch-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px}
-  .switch{display:flex;align-items:center;gap:8px;background:#0f172a;border:2px solid #334155;border-radius:12px;padding:10px 14px;cursor:pointer;font-size:12px;font-weight:700;color:#cbd5e1;transition:.2s;user-select:none}
+  .switch{display:flex;align-items:center;gap:8px;background:#0f172a;border:2px solid #334155;border-radius:12px;padding:10px 14px;cursor:pointer;font-size:12px;font-weight:700;color:#cbd5e;transition:.2s;user-select:none}
   .switch.on{border-color:#f59e0b;color:#f59e0b;background:rgba(245,158,11,.08)}
   .switch input{display:none}
 
@@ -375,7 +375,7 @@
       <h2>🎯 Movie Requests <span class="count-badge" id="reqCountBadge">0</span></h2>
 
       <div class="toolbar req-toolbar">
-        <input type="text" id="reqSearch" placeholder="🔍 Movie naam / contact search...">
+        <input type="text" id="reqSearch" placeholder="🔍 Naam / user / movie search...">
         <select id="reqFilterStatus">
           <option value="">📋 All Status</option>
           <option value="pending">⏳ Pending</option>
@@ -426,10 +426,11 @@
       <h2>ℹ️ Info</h2>
       <p style="font-size:13px;color:#94a3b8;line-height:1.8">
         • User app se aayi <b>requests</b> "🎯 Requests" tab me dikhti hain.<br>
+        • Har request me <b>👤 user ka naam</b> aur <b>🎬 movie ka naam</b> dikhta hai.<br>
         • Har request ke saath <b>6 ghante ka countdown</b> chalta hai.<br>
         • <b>✅ Added</b> button se request complete mark karo.<br>
         • <b>✏️ Form</b> button se movie form me naam/language/quality auto-fill ho jayega.<br>
-        • <b>Multiple languages</b> ek movie me select kar sakte ho.<br>
+        • <b>📋 Copy</b> button se poori request details clipboard me copy hoti hain.<br>
         • Poster auto-compress hota hai (~300px width).
       </p>
     </div>
@@ -521,7 +522,7 @@
   }
   function copyText(t){
     navigator.clipboard.writeText(t).then(
-      () => toast('📋 Link copy ho gaya!', 'success'),
+      () => toast('📋 Copy ho gaya!', 'success'),
       () => toast('Copy fail hua', 'error')
     );
   }
@@ -686,7 +687,8 @@
 
     const gc = document.getElementById('genreChips');
     gc.innerHTML = GENRES.map(g =>
-      `<div class="chip${selectedGenres.has(g)?' active':''}" data-g="${g}">${g}</div>`).join('');
+      `<div class="chip${selectedGenres {
+.has(g)?' active':''}" data-g="${g}">${g}</div>`).        servers[+join('');
     gc.querySelectorAll('.chip').forEach(c => c.addEventListener('click', () => {
       const g = c.dataset.g;
       selectedGenres.has(g) ? selectedGenres.delete(g) : selectedGenres.add(g);
@@ -705,8 +707,7 @@
         <button class="icon-btn" type="button" onclick="removeServerRow(${i})">✕</button>
       </div>`).join('');
     box.querySelectorAll('input').forEach(inp => {
-      inp.addEventListener('input', e => {
-        servers[+e.target.dataset.si][e.target.dataset.sk] = e.target.value;
+      inp.addEventListener('input', e =>e.target.dataset.si][e.target.dataset.sk] = e.target.value;
       });
     });
   }
@@ -1124,7 +1125,8 @@
 
     let list = allRequests.filter(r => {
       if (q){
-        const hay = ((r.name||'') + ' ' + (r.lang||'') + ' ' + (r.quality||'') + ' ' + (r.contact||'')).toLowerCase();
+        // ✅ search me requesterName bhi include kiya
+        const hay = ((r.requesterName||'') + ' ' + (r.name||'') + ' ' + (r.lang||'') + ' ' + (r.quality||'')).toLowerCase();
         if (!hay.includes(q)) return false;
       }
       if (fs && (r.status || 'pending') !== fs) return false;
@@ -1183,19 +1185,24 @@
           ? `<div class="req-time-remain" style="color:#6ee7b7">✅ Complete (${r.addedAt ? timeAgo(r.addedAt) : 'mark ki gayi'})</div>`
           : `<div class="req-time-remain" style="color:#94a3b8">❌ Reject kar diya gaya</div>`;
 
+      // ✅ Requester name display (purane 'contact' ki jagah)
+      const requesterHtml = r.requesterName
+        ? `<div class="req-item-contact">👤 Requested by: <b>${escapeHtml(r.requesterName)}</b></div>`
+        : (r.contact && r.contact !== 'Not provided'
+            ? `<div class="req-item-contact">👤 User: <b>${escapeHtml(r.contact)}</b></div>`
+            : `<div class="req-item-contact" style="opacity:.6">👤 Name not provided</div>`);
+
       return `
       <div class="req-item status-${status}">
         <div class="req-item-icon">${status === 'pending' ? '🎬' : status === 'added' ? '✅' : '❌'}</div>
         <div class="req-item-info">
           <span class="req-status-badge req-status-${status}">${statusLabel}</span>
-          <div class="req-item-name">${escapeHtml(r.name || 'Untitled')}</div>
+          <div class="req-item-name">🎬 ${escapeHtml(r.name || 'Untitled')}</div>
           <div class="req-item-meta">
             <span class="mini-badge badge-lang">🌐 ${escapeHtml(r.lang || 'Any')}</span>
             <span class="mini-badge badge-quality">🎞️ ${escapeHtml(r.quality || 'Any')}</span>
           </div>
-          ${r.contact && r.contact !== 'Not provided'
-            ? `<div class="req-item-contact">📱 Contact: <b>${escapeHtml(r.contact)}</b></div>`
-            : `<div class="req-item-contact" style="opacity:.6">📱 Contact: Not provided</div>`}
+          ${requesterHtml}
           <div class="req-item-time">📅 ${formatDate(time)} · ${timeAgo(time)}</div>
           ${remainHtml}
         </div>
@@ -1256,7 +1263,6 @@
         selectedLangs = new Set([match.name]);
         buildLangGrid();
       } else {
-        // Not in list — add to custom list temporarily
         toast('⚠️ Language "' + r.lang + '" list me nahi mili, manually chuno', 'info');
       }
     }
@@ -1301,7 +1307,10 @@
     else if (act === 'prefill') prefillFromRequest(id);
     else if (act === 'copy'){
       const r = allRequests.find(x => x.id === id);
-      if (r) copyText(`${r.name} | ${r.lang||'Any'} | ${r.quality||'Any'} | ${r.contact||'—'}`);
+      if (r) {
+        // ✅ Copy me requesterName bhi add kiya
+        copyText(`👤 ${r.requesterName || '—'} | 🎬 ${r.name} | 🌐 ${r.lang||'Any'} | 🎞️ ${r.quality||'Any'}`);
+      }
     }
   });
 
