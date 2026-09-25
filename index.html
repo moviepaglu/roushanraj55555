@@ -12,18 +12,31 @@
   h1{font-size:26px;background:linear-gradient(135deg,#f59e0b,#ef4444);-webkit-background-clip:text;background-clip:text;color:transparent}
   .badge{display:inline-block;background:#ef4444;color:#fff;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:700;margin-top:6px;letter-spacing:1px}
   .sub{color:#94a3b8;font-size:13px;margin-top:6px}
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}
+  .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:16px}
   .stat{background:#0f172a;border:1px solid #334155;border-radius:12px;padding:10px 6px}
   .stat b{display:block;font-size:20px;color:#f59e0b}
+  .stat.req-stat b{color:#a78bfa}
   .stat span{font-size:10px;color:#94a3b8;letter-spacing:.5px}
 
-  .tabs{display:flex;gap:8px;margin-bottom:16px;background:#0f172a;padding:6px;border-radius:14px;border:1px solid #334155}
-  .tab{flex:1;padding:11px;border:none;background:transparent;color:#94a3b8;font-weight:700;font-size:13px;border-radius:10px;cursor:pointer;transition:.2s}
+  .tabs{display:flex;gap:8px;margin-bottom:16px;background:#0f172a;padding:6px;border-radius:14px;border:1px solid #334155;position:relative}
+  .tab{flex:1;padding:11px 8px;border:none;background:transparent;color:#94a3b8;font-weight:700;font-size:13px;border-radius:10px;cursor:pointer;transition:.2s;position:relative;display:flex;align-items:center;justify-content:center;gap:6px}
   .tab.active{background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff}
   .tab:hover:not(.active){color:#e2e8f0;background:#1e293b}
 
+  .req-badge{
+    background:#ef4444;color:#fff;font-size:10px;padding:2px 7px;
+    border-radius:10px;font-weight:800;min-width:18px;text-align:center;
+    display:none;animation:reqPulse 1.6s ease-in-out infinite;
+  }
+  .req-badge.show{display:inline-block}
+  .tab.active .req-badge{background:#fff;color:#ef4444}
+  @keyframes reqPulse{
+    0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(239,68,68,.6)}
+    50%{transform:scale(1.12);box-shadow:0 0 0 6px rgba(239,68,68,0)}
+  }
+
   .card{background:rgba(30,41,59,.8);border-radius:20px;padding:22px;margin-bottom:18px;border:1px solid #334155;box-shadow:0 10px 30px rgba(0,0,0,.3)}
-  .card h2{font-size:17px;margin-bottom:16px;color:#f1f5f9;border-left:4px solid #f59e0b;padding-left:12px;display:flex;justify-content:space-between;align-items:center}
+  .card h2{font-size:17px;margin-bottom:16px;color:#f1f5f9;border-left:4px solid #f59e0b;padding-left:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
   label{display:block;font-size:13px;color:#cbd5e1;margin-bottom:6px;font-weight:600;margin-top:14px}
   label:first-of-type{margin-top:0}
   .req{color:#ef4444}
@@ -56,7 +69,6 @@
   .chip:hover{border-color:#475569}
   .chip.active{background:linear-gradient(135deg,#f59e0b,#ef4444);border-color:transparent;color:#fff}
 
-  /* LANGUAGE MULTI SELECT */
   .lang-box{background:#0f172a;border:2px solid #334155;border-radius:12px;padding:12px;max-height:200px;overflow-y:auto;transition:.2s}
   .lang-box:focus-within{border-color:#f59e0b;box-shadow:0 0 0 3px rgba(245,158,11,.2)}
   .lang-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(135px,1fr));gap:8px}
@@ -95,6 +107,7 @@
   .status-error{background:#7f1d1d;color:#fca5a5;display:block}
 
   .toolbar{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:8px;margin-bottom:14px}
+  .toolbar.req-toolbar{grid-template-columns:2fr 1fr 1fr}
   .toolbar input,.toolbar select{padding:10px 12px;font-size:12px}
 
   .bulkbar{display:none;align-items:center;justify-content:space-between;gap:10px;background:#0f172a;border:1px solid #334155;border-radius:12px;padding:10px 14px;margin-bottom:12px;font-size:12px}
@@ -127,7 +140,55 @@
   .act.edit:hover{background:#2563eb}
   .act.star{background:#78350f}
   .act.star:hover{background:#b45309}
+  .act.ok{background:#065f46}
+  .act.ok:hover{background:#10b981}
+  .act.warn{background:#78350f}
+  .act.warn:hover{background:#b45309}
+  .act.purple{background:#5b21b6}
+  .act.purple:hover{background:#7c3aed}
   .chk{position:absolute;top:10px;right:10px;width:18px;height:18px;accent-color:#f59e0b;cursor:pointer}
+
+  /* ================= REQUEST ITEMS ================= */
+  .req-list{display:flex;flex-direction:column;gap:12px}
+  .req-item{
+    background:#0f172a;border:1px solid #334155;
+    border-left:4px solid #f59e0b;
+    border-radius:14px;padding:14px;display:flex;gap:14px;align-items:flex-start;
+    transition:.2s;position:relative
+  }
+  .req-item:hover{border-color:#a78bfa;border-left-color:#a78bfa}
+  .req-item.status-added{border-left-color:#10b981;opacity:.92}
+  .req-item.status-rejected{border-left-color:#64748b;opacity:.62}
+
+  .req-item-icon{
+    width:52px;height:52px;border-radius:14px;flex-shrink:0;
+    background:linear-gradient(135deg,#a78bfa,#6366f1);
+    display:flex;align-items:center;justify-content:center;font-size:24px;
+    box-shadow:0 6px 16px rgba(139,92,246,.3)
+  }
+  .req-item.status-added .req-item-icon{background:linear-gradient(135deg,#10b981,#059669);box-shadow:0 6px 16px rgba(16,185,129,.3)}
+  .req-item.status-rejected .req-item-icon{background:linear-gradient(135deg,#475569,#334155);box-shadow:none}
+
+  .req-item-info{flex:1;min-width:0;padding-right:80px}
+  .req-item-name{font-weight:800;color:#f1f5f9;font-size:15px;margin-bottom:8px;word-break:break-word;line-height:1.3}
+  .req-item-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+  .req-item-contact{font-size:11.5px;color:#94a3b8;margin-bottom:6px;word-break:break-word}
+  .req-item-contact b{color:#cbd5e1}
+  .req-item-time{font-size:11px;color:#64748b;margin-bottom:6px}
+  .req-time-remain{font-size:11.5px;font-weight:700;color:#6ee7b7;display:flex;align-items:center;gap:5px}
+  .req-time-remain.overdue{color:#fca5a5}
+  .req-time-remain.pending-soon{color:#fbbf24}
+
+  .req-status-badge{
+    position:absolute;top:14px;right:14px;
+    font-size:10px;font-weight:800;padding:3px 10px;
+    border-radius:20px;letter-spacing:.4px;white-space:nowrap
+  }
+  .req-status-pending{background:rgba(245,158,11,.15);color:#fbbf24;border:1px solid rgba(245,158,11,.4)}
+  .req-status-added{background:rgba(16,185,129,.15);color:#6ee7b7;border:1px solid rgba(16,185,129,.4)}
+  .req-status-rejected{background:rgba(100,116,139,.2);color:#94a3b8;border:1px solid rgba(100,116,139,.4)}
+
+  .req-item-actions{display:flex;flex-direction:column;gap:6px;flex-shrink:0;align-items:stretch}
 
   .empty,.loading{text-align:center;padding:34px 20px;color:#64748b;font-size:14px}
   .count-badge{background:#334155;color:#f1f5f9;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700}
@@ -136,6 +197,7 @@
   .toast{background:#1e293b;border-left:4px solid #f59e0b;padding:12px 16px;border-radius:10px;color:#e2e8f0;font-size:13px;box-shadow:0 8px 25px rgba(0,0,0,.5);animation:slideIn .25s ease}
   .toast.success{border-color:#10b981}
   .toast.error{border-color:#ef4444}
+  .toast.info{border-color:#a78bfa}
   @keyframes slideIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
 
   .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:9998;padding:16px;backdrop-filter:blur(4px)}
@@ -151,12 +213,18 @@
   @media(max-width:700px){
     .row-2,.row-3{grid-template-columns:1fr}
     .toolbar{grid-template-columns:1fr 1fr}
+    .toolbar.req-toolbar{grid-template-columns:1fr}
     .server-row{grid-template-columns:1fr 1fr;gap:6px}
     .server-row input:nth-child(3){grid-column:1/-1}
     .stats{grid-template-columns:1fr 1fr}
     h1{font-size:21px}
     .item-actions{flex-direction:row;flex-wrap:wrap}
     .lang-grid{grid-template-columns:1fr 1fr}
+    .req-item{flex-direction:column;padding-right:14px}
+    .req-item-info{padding-right:0}
+    .req-status-badge{position:static;align-self:flex-start;margin-bottom:8px}
+    .req-item-actions{flex-direction:row;flex-wrap:wrap;width:100%}
+    .req-item-actions .act{flex:1}
   }
 </style>
 </head>
@@ -173,12 +241,14 @@
       <div class="stat"><b id="statFeatured">0</b><span>FEATURED</span></div>
       <div class="stat"><b id="statTrending">0</b><span>TRENDING</span></div>
       <div class="stat"><b id="statLangs">0</b><span>LANGUAGES</span></div>
+      <div class="stat req-stat"><b id="statRequests">0</b><span>🎯 REQUESTS</span></div>
     </div>
   </div>
 
   <div class="tabs">
     <button class="tab active" data-tab="add">➕ Add / Edit</button>
     <button class="tab" data-tab="list">📋 Movies</button>
+    <button class="tab" data-tab="requests">🎯 Requests <span class="req-badge" id="reqTabBadge">0</span></button>
     <button class="tab" data-tab="tools">⚙️ Tools</button>
   </div>
 
@@ -212,7 +282,6 @@
         </div>
       </div>
 
-      <!-- 🌐 MULTIPLE LANGUAGES SELECT -->
       <label>🌐 Languages (ek se zyada select kar sakte ho) <span class="req">*</span></label>
       <div class="lang-box">
         <div class="lang-grid" id="langGrid"></div>
@@ -300,6 +369,38 @@
     </div>
   </section>
 
+  <!-- ================= REQUESTS TAB 🎯 ================= -->
+  <section id="tab-requests" class="hidden">
+    <div class="card">
+      <h2>🎯 Movie Requests <span class="count-badge" id="reqCountBadge">0</span></h2>
+
+      <div class="toolbar req-toolbar">
+        <input type="text" id="reqSearch" placeholder="🔍 Movie naam / contact search...">
+        <select id="reqFilterStatus">
+          <option value="">📋 All Status</option>
+          <option value="pending">⏳ Pending</option>
+          <option value="added">✅ Added</option>
+          <option value="rejected">❌ Rejected</option>
+        </select>
+        <select id="reqSortBy">
+          <option value="newest">🆕 Newest First</option>
+          <option value="oldest">🕐 Oldest First</option>
+          <option value="deadline">⏰ Deadline (Urgent)</option>
+        </select>
+      </div>
+
+      <div class="bulkbar" id="reqBulkBar" style="display:none">
+        <span>⏳ <b id="reqPendingCount">0</b> pending requests</span>
+        <div class="btn-row" style="width:auto">
+          <button class="act ok" onclick="markAllPendingAdded()">✅ Sab Added Mark</button>
+          <button class="act del" onclick="clearRejectedRequests()">🗑️ Clear Rejected</button>
+        </div>
+      </div>
+
+      <div class="req-list" id="reqList"><div class="loading">⏳ Loading requests...</div></div>
+    </div>
+  </section>
+
   <!-- ================= TOOLS TAB ================= -->
   <section id="tab-tools" class="hidden">
     <div class="card">
@@ -318,14 +419,17 @@
         ⚠️ Ye action undo nahi ho sakta. Sirf tab use karo jab pakka ho.
       </p>
       <button class="btn danger" onclick="deleteAll()">🗑️ Delete ALL Movies</button>
+      <button class="btn danger" style="margin-top:10px" onclick="deleteAllRequests()">🗑️ Delete ALL Requests</button>
     </div>
 
     <div class="card">
       <h2>ℹ️ Info</h2>
       <p style="font-size:13px;color:#94a3b8;line-height:1.8">
-        • Naya record me <b>link</b> field bhi save hota hai (purane user-app ke liye compatible).<br>
+        • User app se aayi <b>requests</b> "🎯 Requests" tab me dikhti hain.<br>
+        • Har request ke saath <b>6 ghante ka countdown</b> chalta hai.<br>
+        • <b>✅ Added</b> button se request complete mark karo.<br>
+        • <b>✏️ Form</b> button se movie form me naam/language/quality auto-fill ho jayega.<br>
         • <b>Multiple languages</b> ek movie me select kar sakte ho.<br>
-        • Quality &amp; servers multiple rakhe ja sakte hain.<br>
         • Poster auto-compress hota hai (~300px width).
       </p>
     </div>
@@ -359,6 +463,9 @@
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
   const moviesRef = ref(db, 'movies');
+  const requestsRef = ref(db, 'requests');  // 🎯 user-submitted requests
+
+  const SIX_HOURS_MS = 6 * 60 * 60 * 1000;
 
   /* ================= STATE ================= */
   let posterData = null;
@@ -369,31 +476,22 @@
   let servers = [{ label: 'Server 1', quality: '1080p', url: '' }];
   let editingId = null;
   let allMovies = [];
+  let allRequests = [];
   let selectedIds = new Set();
+  let lastPendingCount = 0;
 
   const LANGUAGES = [
-    { name: 'Hindi', flag: '🇮🇳' },
-    { name: 'English', flag: '🇬🇧' },
-    { name: 'Tamil', flag: '🇮🇳' },
-    { name: 'Telugu', flag: '🇮🇳' },
-    { name: 'Punjabi', flag: '🇮🇳' },
-    { name: 'Bengali', flag: '🇮🇳' },
-    { name: 'Marathi', flag: '🇮🇳' },
-    { name: 'Malayalam', flag: '🇮🇳' },
-    { name: 'Kannada', flag: '🇮🇳' },
-    { name: 'Gujarati', flag: '🇮🇳' },
-    { name: 'Urdu', flag: '🇵🇰' },
-    { name: 'Korean', flag: '🇰🇷' },
-    { name: 'Japanese', flag: '🇯🇵' },
-    { name: 'Chinese', flag: '🇨🇳' },
-    { name: 'Spanish', flag: '🇪🇸' },
-    { name: 'French', flag: '🇫🇷' },
-    { name: 'German', flag: '🇩🇪' },
-    { name: 'Russian', flag: '🇷🇺' },
-    { name: 'Arabic', flag: '🇸🇦' },
-    { name: 'Turkish', flag: '🇹🇷' },
-    { name: 'Thai', flag: '🇹🇭' },
-    { name: 'Indonesian', flag: '🇮🇩' },
+    { name: 'Hindi', flag: '🇮🇳' }, { name: 'English', flag: '🇬🇧' },
+    { name: 'Tamil', flag: '🇮🇳' }, { name: 'Telugu', flag: '🇮🇳' },
+    { name: 'Punjabi', flag: '🇮🇳' }, { name: 'Bengali', flag: '🇮🇳' },
+    { name: 'Marathi', flag: '🇮🇳' }, { name: 'Malayalam', flag: '🇮🇳' },
+    { name: 'Kannada', flag: '🇮🇳' }, { name: 'Gujarati', flag: '🇮🇳' },
+    { name: 'Urdu', flag: '🇵🇰' }, { name: 'Korean', flag: '🇰🇷' },
+    { name: 'Japanese', flag: '🇯🇵' }, { name: 'Chinese', flag: '🇨🇳' },
+    { name: 'Spanish', flag: '🇪🇸' }, { name: 'French', flag: '🇫🇷' },
+    { name: 'German', flag: '🇩🇪' }, { name: 'Russian', flag: '🇷🇺' },
+    { name: 'Arabic', flag: '🇸🇦' }, { name: 'Turkish', flag: '🇹🇷' },
+    { name: 'Thai', flag: '🇹🇭' }, { name: 'Indonesian', flag: '🇮🇩' },
     { name: 'Other', flag: '🌍' }
   ];
 
@@ -427,13 +525,42 @@
       () => toast('Copy fail hua', 'error')
     );
   }
+  function timeAgo(ts){
+    if (!ts) return 'kabhi nahi';
+    const s = Math.floor((Date.now() - ts) / 1000);
+    if (s < 60) return s + 's pehle';
+    const m = Math.floor(s / 60);
+    if (m < 60) return m + 'm pehle';
+    const h = Math.floor(m / 60);
+    if (h < 24) return h + 'h ' + (m % 60) + 'm pehle';
+    const d = Math.floor(h / 24);
+    return d + 'd pehle';
+  }
+  function formatDate(ts){
+    if (!ts) return '—';
+    const d = new Date(ts);
+    return d.toLocaleString('en-IN', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+  }
+  function formatRemaining(remainingMs){
+    if (remainingMs <= 0){
+      const over = Math.abs(remainingMs);
+      const h = Math.floor(over / 3600000);
+      const m = Math.floor((over % 3600000) / 60000);
+      return { text: `⚠️ ${h}h ${m}m overdue`, cls: 'overdue' };
+    }
+    const h = Math.floor(remainingMs / 3600000);
+    const m = Math.floor((remainingMs % 3600000) / 60000);
+    if (h < 1) return { text: `⏳ ${m}m remaining (urgent!)`, cls: 'pending-soon' };
+    if (h < 2) return { text: `⏳ ${h}h ${m}m remaining`, cls: 'pending-soon' };
+    return { text: `⏳ ${h}h ${m}m remaining`, cls: '' };
+  }
 
   /* ================= TABS ================= */
   document.querySelectorAll('.tab').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      ['add','list','tools'].forEach(t => {
+      ['add','list','requests','tools'].forEach(t => {
         document.getElementById('tab-' + t).classList.toggle('hidden', t !== btn.dataset.tab);
       });
     });
@@ -639,10 +766,9 @@
     const langsArr = [...selectedLangs];
 
     const payload = {
-      name,
-      desc,
-      langs: langsArr,                              // ✅ multiple languages (new)
-      lang: langsArr[0],                            // ✅ backward compat (pehli language)
+      name, desc,
+      langs: langsArr,
+      lang: langsArr[0],
       year: year || '',
       duration: duration || '',
       rating: rating || '',
@@ -653,8 +779,7 @@
       download: download || '',
       trailer: trailer || '',
       subtitle: subtitle || '',
-      featured,
-      trending,
+      featured, trending,
       updatedAt: Date.now(),
       link: cleanServers[0].url,
       quality: qualitiesArr[0] || 'HD'
@@ -742,10 +867,7 @@
       ? `<img src="${escapeHtml(m.poster)}" alt="">` : '<span>No Image</span>';
     document.getElementById('posterUrl').value = (m.poster && m.poster.startsWith('http')) ? m.poster : '';
 
-    // Load languages — new format (langs array) ya old format (lang single)
-    const langsToLoad = Array.isArray(m.langs) && m.langs.length
-      ? m.langs
-      : (m.lang ? [m.lang] : []);
+    const langsToLoad = Array.isArray(m.langs) && m.langs.length ? m.langs : (m.lang ? [m.lang] : []);
     selectedLangs = new Set(langsToLoad);
     buildLangGrid();
 
@@ -812,6 +934,15 @@
     } catch (e) { toast('Fail: ' + e.message, 'error'); }
   };
 
+  window.deleteAllRequests = async function(){
+    if (!allRequests.length) return toast('Koi request hi nahi hai', 'error');
+    if (!confirm('⚠️ SAARI requests delete ho jayengi! Pakka?')) return;
+    try {
+      await remove(requestsRef);
+      toast('🧹 Saari requests delete ho gayi', 'success');
+    } catch (e) { toast('Fail: ' + e.message, 'error'); }
+  };
+
   /* ================= PREVIEW ================= */
   window.openPreview = function(id){
     const m = allMovies.find(x => x.id === id);
@@ -848,7 +979,7 @@
     if (e.target.id === 'previewModal') closePreview();
   });
 
-  /* ================= FILTER / SORT ================= */
+  /* ================= FILTER / SORT (MOVIES) ================= */
   function getFiltered(){
     const q = document.getElementById('searchBox').value.trim().toLowerCase();
     const fl = document.getElementById('filterLang').value;
@@ -983,6 +1114,197 @@
     }
   });
 
+  /* ============================================================
+     🎯 REQUESTS — FILTER, RENDER & ACTIONS
+     ============================================================ */
+  function getFilteredRequests(){
+    const q = document.getElementById('reqSearch').value.trim().toLowerCase();
+    const fs = document.getElementById('reqFilterStatus').value;
+    const sort = document.getElementById('reqSortBy').value;
+
+    let list = allRequests.filter(r => {
+      if (q){
+        const hay = ((r.name||'') + ' ' + (r.lang||'') + ' ' + (r.quality||'') + ' ' + (r.contact||'')).toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      if (fs && (r.status || 'pending') !== fs) return false;
+      return true;
+    });
+
+    if (sort === 'newest') list.sort((a,b) => (b.time||0) - (a.time||0));
+    else if (sort === 'oldest') list.sort((a,b) => (a.time||0) - (b.time||0));
+    else if (sort === 'deadline'){
+      list.sort((a,b) => {
+        const aStatus = a.status || 'pending';
+        const bStatus = b.status || 'pending';
+        if (aStatus === 'pending' && bStatus !== 'pending') return -1;
+        if (aStatus !== 'pending' && bStatus === 'pending') return 1;
+        const aDead = (a.time||0) + SIX_HOURS_MS;
+        const bDead = (b.time||0) + SIX_HOURS_MS;
+        return aDead - bDead;
+      });
+    }
+    return list;
+  }
+
+  function renderRequests(){
+    const listDiv = document.getElementById('reqList');
+    const list = getFilteredRequests();
+    document.getElementById('reqCountBadge').textContent = allRequests.length;
+
+    const pendingCount = allRequests.filter(r => (r.status || 'pending') === 'pending').length;
+    document.getElementById('reqPendingCount').textContent = pendingCount;
+
+    // Show bulkbar only if pending exists
+    const bulkBar = document.getElementById('reqBulkBar');
+    bulkBar.style.display = pendingCount > 0 ? 'flex' : 'none';
+    bulkBar.classList.toggle('show', pendingCount > 0);
+
+    if (!list.length){
+      listDiv.innerHTML = allRequests.length
+        ? '<div class="empty">🔍 Koi request filter se match nahi hui</div>'
+        : '<div class="empty">🎯 Abhi tak koi request nahi aayi.<br><br>User app se request aane par yahan live dikhegi.</div>';
+      return;
+    }
+
+    listDiv.innerHTML = list.map(r => {
+      const status = r.status || 'pending';
+      const time = r.time || 0;
+      const deadline = time + SIX_HOURS_MS;
+      const remaining = deadline - Date.now();
+      const remInfo = formatRemaining(remaining);
+      const statusLabel = status === 'pending' ? '⏳ PENDING'
+                       : status === 'added'   ? '✅ ADDED'
+                       : '❌ REJECTED';
+
+      const remainHtml = status === 'pending'
+        ? `<div class="req-time-remain ${remInfo.cls}">${remInfo.text}</div>`
+        : status === 'added'
+          ? `<div class="req-time-remain" style="color:#6ee7b7">✅ Complete (${r.addedAt ? timeAgo(r.addedAt) : 'mark ki gayi'})</div>`
+          : `<div class="req-time-remain" style="color:#94a3b8">❌ Reject kar diya gaya</div>`;
+
+      return `
+      <div class="req-item status-${status}">
+        <div class="req-item-icon">${status === 'pending' ? '🎬' : status === 'added' ? '✅' : '❌'}</div>
+        <div class="req-item-info">
+          <span class="req-status-badge req-status-${status}">${statusLabel}</span>
+          <div class="req-item-name">${escapeHtml(r.name || 'Untitled')}</div>
+          <div class="req-item-meta">
+            <span class="mini-badge badge-lang">🌐 ${escapeHtml(r.lang || 'Any')}</span>
+            <span class="mini-badge badge-quality">🎞️ ${escapeHtml(r.quality || 'Any')}</span>
+          </div>
+          ${r.contact && r.contact !== 'Not provided'
+            ? `<div class="req-item-contact">📱 Contact: <b>${escapeHtml(r.contact)}</b></div>`
+            : `<div class="req-item-contact" style="opacity:.6">📱 Contact: Not provided</div>`}
+          <div class="req-item-time">📅 ${formatDate(time)} · ${timeAgo(time)}</div>
+          ${remainHtml}
+        </div>
+        <div class="req-item-actions">
+          ${status === 'pending' ? `
+            <button class="act ok" data-req-action="add" data-id="${r.id}">✅ Added</button>
+            <button class="act purple" data-req-action="prefill" data-id="${r.id}">✏️ Form</button>
+            <button class="act warn" data-req-action="reject" data-id="${r.id}">❌ Reject</button>
+          ` : `
+            <button class="act purple" data-req-action="prefill" data-id="${r.id}">✏️ Form</button>
+            <button class="act" data-req-action="pending" data-id="${r.id}">↩️ Pending</button>
+          `}
+          <button class="act" data-req-action="copy" data-id="${r.id}">📋 Copy</button>
+          <button class="act del" data-req-action="del" data-id="${r.id}">🗑️ Del</button>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  ['reqSearch','reqFilterStatus','reqSortBy'].forEach(id => {
+    document.getElementById(id).addEventListener('input', renderRequests);
+    document.getElementById(id).addEventListener('change', renderRequests);
+  });
+
+  // Auto-refresh countdown every 30s
+  setInterval(() => {
+    const activeTab = document.querySelector('.tab.active')?.dataset.tab;
+    if (activeTab === 'requests') renderRequests();
+  }, 30000);
+
+  /* ---------- Request Actions ---------- */
+  window.setReqStatus = async function(id, status){
+    try {
+      const payload = { status, statusAt: Date.now() };
+      if (status === 'added') payload.addedAt = Date.now();
+      await update(ref(db, 'requests/' + id), payload);
+      toast(status === 'added' ? '✅ Added mark ho gayi' : status === 'rejected' ? '❌ Reject ho gayi' : '↩️ Pending me daal di', 'success');
+    } catch (e) { toast('Fail: ' + e.message, 'error'); }
+  };
+
+  window.deleteRequest = async function(id){
+    const r = allRequests.find(x => x.id === id);
+    if (!confirm(`"${r ? r.name : 'Ye request'}" delete karni hai?`)) return;
+    try {
+      await remove(ref(db, 'requests/' + id));
+      toast('🗑️ Request delete ho gayi', 'success');
+    } catch (e) { toast('Fail: ' + e.message, 'error'); }
+  };
+
+  window.prefillFromRequest = function(id){
+    const r = allRequests.find(x => x.id === id);
+    if (!r) return;
+    goTab('add');
+    document.getElementById('movieName').value = r.name || '';
+    if (r.lang && r.lang !== 'Any'){
+      const match = LANGUAGES.find(l => l.name.toLowerCase() === String(r.lang).toLowerCase());
+      if (match){
+        selectedLangs = new Set([match.name]);
+        buildLangGrid();
+      } else {
+        // Not in list — add to custom list temporarily
+        toast('⚠️ Language "' + r.lang + '" list me nahi mili, manually chuno', 'info');
+      }
+    }
+    if (r.quality && r.quality !== 'Any'){
+      selectedQualities = new Set([r.quality]);
+      buildChips();
+    }
+    toast('📝 Request se form auto-fill ho gaya', 'info');
+  };
+
+  window.markAllPendingAdded = async function(){
+    const pending = allRequests.filter(r => (r.status || 'pending') === 'pending');
+    if (!pending.length) return toast('Koi pending request nahi hai', 'info');
+    if (!confirm(`${pending.length} pending requests ko "Added" mark karna hai?`)) return;
+    try {
+      await Promise.all(pending.map(r =>
+        update(ref(db, 'requests/' + r.id), { status: 'added', statusAt: Date.now(), addedAt: Date.now() })
+      ));
+      toast(`✅ ${pending.length} requests added mark ho gayi`, 'success');
+    } catch (e) { toast('Fail: ' + e.message, 'error'); }
+  };
+
+  window.clearRejectedRequests = async function(){
+    const rejected = allRequests.filter(r => r.status === 'rejected');
+    if (!rejected.length) return toast('Koi rejected request nahi hai', 'info');
+    if (!confirm(`${rejected.length} rejected requests delete karni hain?`)) return;
+    try {
+      await Promise.all(rejected.map(r => remove(ref(db, 'requests/' + r.id))));
+      toast(`🗑️ ${rejected.length} requests delete ho gayi`, 'success');
+    } catch (e) { toast('Fail: ' + e.message, 'error'); }
+  };
+
+  document.getElementById('reqList').addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-req-action]');
+    if (!btn) return;
+    const id = btn.dataset.id;
+    const act = btn.dataset.reqAction;
+    if (act === 'add') setReqStatus(id, 'added');
+    else if (act === 'reject') setReqStatus(id, 'rejected');
+    else if (act === 'pending') setReqStatus(id, 'pending');
+    else if (act === 'del') deleteRequest(id);
+    else if (act === 'prefill') prefillFromRequest(id);
+    else if (act === 'copy'){
+      const r = allRequests.find(x => x.id === id);
+      if (r) copyText(`${r.name} | ${r.lang||'Any'} | ${r.quality||'Any'} | ${r.contact||'—'}`);
+    }
+  });
+
   /* ================= EXPORT / IMPORT ================= */
   window.exportJSON = function(){
     if (!allMovies.length) return toast('Koi data nahi hai', 'error');
@@ -1020,7 +1342,7 @@
     e.target.value = '';
   });
 
-  /* ================= LIVE DATA ================= */
+  /* ================= LIVE DATA — MOVIES ================= */
   onValue(moviesRef, (snapshot) => {
     const data = snapshot.val();
     allMovies = data
@@ -1035,6 +1357,32 @@
 
     fillFilterOptions();
     renderList();
+  });
+
+  /* ================= LIVE DATA — REQUESTS 🎯 ================= */
+  onValue(requestsRef, (snapshot) => {
+    const data = snapshot.val();
+    allRequests = data
+      ? Object.entries(data).map(([id, val]) => ({ id, ...val }))
+      : [];
+
+    const pending = allRequests.filter(r => (r.status || 'pending') === 'pending').length;
+
+    document.getElementById('statRequests').textContent = allRequests.length;
+
+    // Tab badge
+    const badge = document.getElementById('reqTabBadge');
+    badge.textContent = pending;
+    badge.classList.toggle('show', pending > 0);
+
+    // Notify on new pending
+    if (lastPendingCount !== 0 && pending > lastPendingCount){
+      const diff = pending - lastPendingCount;
+      toast(`🔔 ${diff} nayi movie request aayi!`, 'info');
+    }
+    lastPendingCount = pending;
+
+    renderRequests();
   });
 
   /* ================= INIT ================= */
