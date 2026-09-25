@@ -56,6 +56,20 @@
   .chip:hover{border-color:#475569}
   .chip.active{background:linear-gradient(135deg,#f59e0b,#ef4444);border-color:transparent;color:#fff}
 
+  /* LANGUAGE MULTI SELECT */
+  .lang-box{background:#0f172a;border:2px solid #334155;border-radius:12px;padding:12px;max-height:200px;overflow-y:auto;transition:.2s}
+  .lang-box:focus-within{border-color:#f59e0b;box-shadow:0 0 0 3px rgba(245,158,11,.2)}
+  .lang-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(135px,1fr));gap:8px}
+  .lang-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;background:#1e293b;border:2px solid transparent;cursor:pointer;font-size:12.5px;font-weight:600;color:#cbd5e1;transition:.15s;user-select:none}
+  .lang-item:hover{background:#334155}
+  .lang-item.active{background:linear-gradient(135deg,#f59e0b,#ef4444);color:#fff;border-color:transparent}
+  .lang-item input{display:none}
+  .lang-item .flag{font-size:15px;line-height:1}
+  .lang-info{display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:11px;color:#64748b}
+  .lang-info b{color:#f59e0b}
+  .lang-clear{background:#334155;border:none;color:#fca5a5;padding:5px 12px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer}
+  .lang-clear:hover{background:#ef4444;color:#fff}
+
   .server-row{display:grid;grid-template-columns:130px 110px 1fr 40px;gap:8px;margin-bottom:8px}
   .server-row input{padding:10px 12px;font-size:13px}
   .icon-btn{background:#334155;border:none;color:#fca5a5;border-radius:10px;cursor:pointer;font-size:15px;font-weight:700;transition:.2s}
@@ -88,7 +102,6 @@
   .bulkbar b{color:#f59e0b}
 
   .movie-list{display:flex;flex-direction:column;gap:12px}
-  .movie-list.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:14px}
   .movie-item{background:#0f172a;border:1px solid #334155;border-radius:14px;padding:14px;display:flex;gap:14px;align-items:flex-start;transition:.2s;position:relative}
   .movie-item:hover{border-color:#f59e0b}
   .movie-item.sel{border-color:#f59e0b;background:rgba(245,158,11,.07)}
@@ -115,11 +128,6 @@
   .act.star{background:#78350f}
   .act.star:hover{background:#b45309}
   .chk{position:absolute;top:10px;right:10px;width:18px;height:18px;accent-color:#f59e0b;cursor:pointer}
-
-  .movie-list.grid .movie-item{flex-direction:column}
-  .movie-list.grid .item-poster{width:100%;height:200px}
-  .movie-list.grid .item-actions{flex-direction:row;flex-wrap:wrap;width:100%}
-  .movie-list.grid .item-desc{-webkit-line-clamp:3}
 
   .empty,.loading{text-align:center;padding:34px 20px;color:#64748b;font-size:14px}
   .count-badge{background:#334155;color:#f1f5f9;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700}
@@ -148,6 +156,7 @@
     .stats{grid-template-columns:1fr 1fr}
     h1{font-size:21px}
     .item-actions{flex-direction:row;flex-wrap:wrap}
+    .lang-grid{grid-template-columns:1fr 1fr}
   }
 </style>
 </head>
@@ -203,6 +212,16 @@
         </div>
       </div>
 
+      <!-- 🌐 MULTIPLE LANGUAGES SELECT -->
+      <label>🌐 Languages (ek se zyada select kar sakte ho) <span class="req">*</span></label>
+      <div class="lang-box">
+        <div class="lang-grid" id="langGrid"></div>
+      </div>
+      <div class="lang-info">
+        <span>Selected: <b id="langCount">0</b> language(s)</span>
+        <button class="lang-clear" type="button" onclick="clearAllLangs()">✖ Clear All</button>
+      </div>
+
       <label>🔗 Video Links (Multiple Servers) <span class="req">*</span></label>
       <div id="serverList"></div>
       <button class="add-server" type="button" onclick="addServerRow()">➕ Add Another Server</button>
@@ -212,15 +231,6 @@
 
       <div class="row-3">
         <div>
-          <label>🌐 Language</label>
-          <select id="movieLang">
-            <option>Hindi</option><option>English</option><option>Tamil</option>
-            <option>Telugu</option><option>Punjabi</option><option>Bengali</option>
-            <option>Marathi</option><option>Malayalam</option><option>Kannada</option>
-            <option>Korean</option><option>Japanese</option><option>Other</option>
-          </select>
-        </div>
-        <div>
           <label>📅 Year</label>
           <input type="number" id="movieYear" placeholder="2024" min="1900" max="2100">
         </div>
@@ -228,18 +238,14 @@
           <label>⏱️ Duration</label>
           <input type="text" id="movieDuration" placeholder="2h 15m">
         </div>
-      </div>
-
-      <div class="row-2">
         <div>
           <label>⭐ Rating (0-10)</label>
           <input type="number" id="movieRating" placeholder="7.5" min="0" max="10" step="0.1">
         </div>
-        <div>
-          <label>📥 Download Link (optional)</label>
-          <input type="url" id="movieDownload" placeholder="https://...">
-        </div>
       </div>
+
+      <label>📥 Download Link (optional)</label>
+      <input type="url" id="movieDownload" placeholder="https://...">
 
       <label>🎞️ Quality (ek se zyada chun sakte ho)</label>
       <div class="chips" id="qualityChips"></div>
@@ -317,9 +323,10 @@
     <div class="card">
       <h2>ℹ️ Info</h2>
       <p style="font-size:13px;color:#94a3b8;line-height:1.8">
-        • Naya record me <b>link</b> field bhi save hota hai (pehle wale user-app ke liye compatible).<br>
+        • Naya record me <b>link</b> field bhi save hota hai (purane user-app ke liye compatible).<br>
+        • <b>Multiple languages</b> ek movie me select kar sakte ho.<br>
         • Quality &amp; servers multiple rakhe ja sakte hain.<br>
-        • Poster auto-compress hota hai (~300px width) taaki database halka rahe.
+        • Poster auto-compress hota hai (~300px width).
       </p>
     </div>
   </section>
@@ -356,12 +363,39 @@
   /* ================= STATE ================= */
   let posterData = null;
   let posterMode = 'file';
+  let selectedLangs = new Set();
   let selectedQualities = new Set(['1080p']);
   let selectedGenres = new Set();
   let servers = [{ label: 'Server 1', quality: '1080p', url: '' }];
   let editingId = null;
   let allMovies = [];
   let selectedIds = new Set();
+
+  const LANGUAGES = [
+    { name: 'Hindi', flag: '🇮🇳' },
+    { name: 'English', flag: '🇬🇧' },
+    { name: 'Tamil', flag: '🇮🇳' },
+    { name: 'Telugu', flag: '🇮🇳' },
+    { name: 'Punjabi', flag: '🇮🇳' },
+    { name: 'Bengali', flag: '🇮🇳' },
+    { name: 'Marathi', flag: '🇮🇳' },
+    { name: 'Malayalam', flag: '🇮🇳' },
+    { name: 'Kannada', flag: '🇮🇳' },
+    { name: 'Gujarati', flag: '🇮🇳' },
+    { name: 'Urdu', flag: '🇵🇰' },
+    { name: 'Korean', flag: '🇰🇷' },
+    { name: 'Japanese', flag: '🇯🇵' },
+    { name: 'Chinese', flag: '🇨🇳' },
+    { name: 'Spanish', flag: '🇪🇸' },
+    { name: 'French', flag: '🇫🇷' },
+    { name: 'German', flag: '🇩🇪' },
+    { name: 'Russian', flag: '🇷🇺' },
+    { name: 'Arabic', flag: '🇸🇦' },
+    { name: 'Turkish', flag: '🇹🇷' },
+    { name: 'Thai', flag: '🇹🇭' },
+    { name: 'Indonesian', flag: '🇮🇩' },
+    { name: 'Other', flag: '🌍' }
+  ];
 
   const QUALITIES = ['480p','720p','1080p','4K','HD','WEB-DL','BluRay','HDRip'];
   const GENRES = ['Action','Comedy','Drama','Thriller','Horror','Romance','Sci-Fi','Crime','Adventure','Animation','Fantasy','Mystery','Family','Biography','Documentary'];
@@ -468,6 +502,50 @@
     }
   });
 
+  /* ================= LANGUAGE MULTI-SELECT ================= */
+  function buildLangGrid(){
+    const grid = document.getElementById('langGrid');
+    grid.innerHTML = LANGUAGES.map(l => `
+      <label class="lang-item${selectedLangs.has(l.name)?' active':''}" data-lang="${l.name}">
+        <input type="checkbox" ${selectedLangs.has(l.name)?'checked':''}>
+        <span class="flag">${l.flag}</span>
+        <span>${l.name}</span>
+      </label>
+    `).join('');
+
+    grid.querySelectorAll('.lang-item').forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        const lang = el.dataset.lang;
+        if (selectedLangs.has(lang)) {
+          selectedLangs.delete(lang);
+          el.classList.remove('active');
+          el.querySelector('input').checked = false;
+        } else {
+          selectedLangs.add(lang);
+          el.classList.add('active');
+          el.querySelector('input').checked = true;
+        }
+        updateLangCount();
+      });
+    });
+    updateLangCount();
+  }
+
+  function updateLangCount(){
+    document.getElementById('langCount').textContent = selectedLangs.size;
+  }
+
+  window.clearAllLangs = function(){
+    selectedLangs.clear();
+    document.querySelectorAll('.lang-item').forEach(el => {
+      el.classList.remove('active');
+      el.querySelector('input').checked = false;
+    });
+    updateLangCount();
+    toast('Languages clear ho gayi', 'info');
+  };
+
   /* ================= CHIPS ================= */
   function buildChips(){
     const qc = document.getElementById('qualityChips');
@@ -531,7 +609,6 @@
   window.saveMovie = async function(){
     const name = document.getElementById('movieName').value.trim();
     const desc = document.getElementById('movieDesc').value.trim();
-    const lang = document.getElementById('movieLang').value;
     const year = document.getElementById('movieYear').value.trim();
     const duration = document.getElementById('movieDuration').value.trim();
     const rating = document.getElementById('movieRating').value.trim();
@@ -547,6 +624,7 @@
 
     if (!name) return showStatus('❌ Movie ka naam likho!', 'error');
     if (!posterData) return showStatus('❌ Poster select / URL daalo!', 'error');
+    if (selectedLangs.size === 0) return showStatus('❌ Kam se kam ek Language select karo!', 'error');
     if (!desc) return showStatus('❌ Description likho!', 'error');
     if (!cleanServers.length) return showStatus('❌ Kam se kam ek video link daalo!', 'error');
     const bad = cleanServers.find(s => !/^https?:\/\//i.test(s.url));
@@ -558,10 +636,13 @@
     btn.textContent = editingId ? '⏳ Updating...' : '⏳ Adding...';
 
     const qualitiesArr = [...selectedQualities];
+    const langsArr = [...selectedLangs];
+
     const payload = {
       name,
       desc,
-      lang,
+      langs: langsArr,                              // ✅ multiple languages (new)
+      lang: langsArr[0],                            // ✅ backward compat (pehli language)
       year: year || '',
       duration: duration || '',
       rating: rating || '',
@@ -575,7 +656,6 @@
       featured,
       trending,
       updatedAt: Date.now(),
-      // ---- backward compatibility (purane user-app ke liye) ----
       link: cleanServers[0].url,
       quality: qualitiesArr[0] || 'HD'
     };
@@ -610,7 +690,6 @@
     document.getElementById('movieDownload').value = '';
     document.getElementById('movieTrailer').value = '';
     document.getElementById('movieSubtitle').value = '';
-    document.getElementById('movieLang').value = 'Hindi';
     document.getElementById('movieFeatured').checked = false;
     document.getElementById('movieTrending').checked = false;
     document.getElementById('swFeatured').classList.remove('on');
@@ -620,9 +699,11 @@
     document.getElementById('posterUrl').value = '';
     document.getElementById('posterPreview').innerHTML = '<span>No Image</span>';
     posterData = null;
+    selectedLangs = new Set();
     selectedQualities = new Set(['1080p']);
     selectedGenres = new Set();
     servers = [{ label: 'Server 1', quality: '1080p', url: '' }];
+    buildLangGrid();
     buildChips();
     renderServers();
   }
@@ -644,7 +725,6 @@
 
     document.getElementById('movieName').value = m.name || '';
     document.getElementById('movieDesc').value = m.desc || '';
-    document.getElementById('movieLang').value = m.lang || 'Hindi';
     document.getElementById('movieYear').value = m.year || '';
     document.getElementById('movieDuration').value = m.duration || '';
     document.getElementById('movieRating').value = m.rating || '';
@@ -661,6 +741,13 @@
     document.getElementById('posterPreview').innerHTML = m.poster
       ? `<img src="${escapeHtml(m.poster)}" alt="">` : '<span>No Image</span>';
     document.getElementById('posterUrl').value = (m.poster && m.poster.startsWith('http')) ? m.poster : '';
+
+    // Load languages — new format (langs array) ya old format (lang single)
+    const langsToLoad = Array.isArray(m.langs) && m.langs.length
+      ? m.langs
+      : (m.lang ? [m.lang] : []);
+    selectedLangs = new Set(langsToLoad);
+    buildLangGrid();
 
     selectedQualities = new Set(m.qualities || (m.quality ? [m.quality] : ['1080p']));
     selectedGenres = new Set(m.genres || []);
@@ -730,12 +817,13 @@
     const m = allMovies.find(x => x.id === id);
     if (!m) return;
     const qs = (m.qualities || (m.quality ? [m.quality] : []));
+    const langs = Array.isArray(m.langs) && m.langs.length ? m.langs : (m.lang ? [m.lang] : []);
     const srv = (m.servers && m.servers.length) ? m.servers : (m.link ? [{label:'Server 1', quality:m.quality||'', url:m.link}] : []);
     document.getElementById('previewBody').innerHTML = `
       ${m.poster ? `<img class="pv-poster" src="${escapeHtml(m.poster)}" alt="">` : ''}
       <h2 style="font-size:19px;color:#f1f5f9;margin-bottom:10px">🎬 ${escapeHtml(m.name)}</h2>
       <div class="item-badges" style="margin-bottom:12px">
-        <span class="mini-badge badge-lang">🌐 ${escapeHtml(m.lang||'N/A')}</span>
+        ${langs.map(l=>`<span class="mini-badge badge-lang">🌐 ${escapeHtml(l)}</span>`).join('')}
         ${qs.map(q=>`<span class="mini-badge badge-quality">🎞️ ${escapeHtml(q)}</span>`).join('')}
         ${m.year?`<span class="mini-badge badge-year">📅 ${escapeHtml(m.year)}</span>`:''}
         ${m.rating?`<span class="mini-badge badge-rate">⭐ ${escapeHtml(m.rating)}</span>`:''}
@@ -770,8 +858,9 @@
 
     let list = allMovies.filter(m => {
       const qualities = m.qualities || (m.quality ? [m.quality] : []);
+      const langs = Array.isArray(m.langs) && m.langs.length ? m.langs : (m.lang ? [m.lang] : []);
       if (q && !((m.name||'').toLowerCase().includes(q) || (m.desc||'').toLowerCase().includes(q))) return false;
-      if (fl && m.lang !== fl) return false;
+      if (fl && !langs.includes(fl)) return false;
       if (fq && !qualities.includes(fq)) return false;
       if (fg && !(m.genres||[]).includes(fg)) return false;
       return true;
@@ -792,7 +881,9 @@
   });
 
   function fillFilterOptions(){
-    const langs = [...new Set(allMovies.map(m => m.lang).filter(Boolean))].sort();
+    const langs = [...new Set(allMovies.flatMap(m => {
+      return Array.isArray(m.langs) && m.langs.length ? m.langs : (m.lang ? [m.lang] : []);
+    }))].sort();
     const quals = [...new Set(allMovies.flatMap(m => m.qualities || (m.quality ? [m.quality] : [])))].sort();
     const gens  = [...new Set(allMovies.flatMap(m => m.genres || []))].sort();
 
@@ -823,6 +914,7 @@
 
     listDiv.innerHTML = list.map(m => {
       const qualities = m.qualities || (m.quality ? [m.quality] : []);
+      const langs = Array.isArray(m.langs) && m.langs.length ? m.langs : (m.lang ? [m.lang] : []);
       const srvCount = (m.servers && m.servers.length) ? m.servers.length : (m.link ? 1 : 0);
       const posterImg = m.poster
         ? `<img class="item-poster" src="${escapeHtml(m.poster)}" alt="">`
@@ -835,8 +927,9 @@
         <div class="item-info">
           <div class="item-name">🎬 ${escapeHtml(m.name)}</div>
           <div class="item-badges">
-            <span class="mini-badge badge-lang">🌐 ${escapeHtml(m.lang||'N/A')}</span>
-            ${qualities.slice(0,3).map(q=>`<span class="mini-badge badge-quality">🎞️ ${escapeHtml(q)}</span>`).join('')}
+            ${langs.slice(0,3).map(l=>`<span class="mini-badge badge-lang">🌐 ${escapeHtml(l)}</span>`).join('')}
+            ${langs.length>3?`<span class="mini-badge badge-lang">+${langs.length-3}</span>`:''}
+            ${qualities.slice(0,2).map(q=>`<span class="mini-badge badge-quality">🎞️ ${escapeHtml(q)}</span>`).join('')}
             ${m.year?`<span class="mini-badge badge-year">📅 ${escapeHtml(m.year)}</span>`:''}
             ${m.rating?`<span class="mini-badge badge-rate">⭐ ${escapeHtml(m.rating)}</span>`:''}
             ${(m.genres||[]).slice(0,2).map(g=>`<span class="mini-badge badge-genre">${escapeHtml(g)}</span>`).join('')}
@@ -865,7 +958,6 @@
     bar.classList.toggle('show', selectedIds.size > 0);
   }
 
-  /* event delegation for list */
   document.getElementById('movieList').addEventListener('click', (e) => {
     const btn = e.target.closest('[data-action]');
     if (btn){
@@ -935,18 +1027,18 @@
       ? Object.entries(data).map(([id, val]) => ({ id, ...val }))
       : [];
 
-    // stats
     document.getElementById('statTotal').textContent = allMovies.length;
     document.getElementById('statFeatured').textContent = allMovies.filter(m => m.featured).length;
     document.getElementById('statTrending').textContent = allMovies.filter(m => m.trending).length;
     document.getElementById('statLangs').textContent =
-      new Set(allMovies.map(m => m.lang).filter(Boolean)).size;
+      new Set(allMovies.flatMap(m => Array.isArray(m.langs) && m.langs.length ? m.langs : (m.lang ? [m.lang] : []))).size;
 
     fillFilterOptions();
     renderList();
   });
 
   /* ================= INIT ================= */
+  buildLangGrid();
   buildChips();
   renderServers();
 </script>
